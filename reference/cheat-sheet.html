@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cheat sheet · Copilot CLI for partner consultants</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;500;600;700&family=Cascadia+Code:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../course/style.css">
+<style>
+.main th, .main td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+.main th { background: var(--bg-soft); font-weight: 600; }
+.callout-info {
+  background: var(--tech-light);
+  border-left: 4px solid var(--tech);
+  padding: 16px;
+  margin: 20px 0;
+  border-radius: 6px;
+}
+.callout-info strong { color: var(--tech); }
+.callout-warn {
+  background: var(--warn-bg);
+  border-left: 4px solid var(--warn);
+  padding: 16px;
+  margin: 20px 0;
+  border-radius: 6px;
+}
+.callout-warn strong { color: var(--warn); }
+.main code {
+  background: var(--code-bg);
+  color: var(--code-fg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Cascadia Code', monospace;
+  font-size: 13px;
+}
+.main pre {
+  background: var(--code-bg);
+  color: var(--code-fg);
+  padding: 16px;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 16px 0;
+}
+.main pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a class="topnav-brand" href="../index.html">
+      <span class="brand-mark">&gt;_</span>
+      <span>Copilot CLI · Partner course</span>
+    </a>
+    <div class="topnav-links">
+      <a href="../setup.html">Setup guide</a>
+      <a href="../" class="always-visible">All resources</a>
+    </div>
+  </div>
+</nav>
+
+<div class="lesson-shell">
+  <main class="main">
+    <div class="crumb">
+      <a href="../">All resources</a> &nbsp;›&nbsp; Reference &nbsp;›&nbsp; Cheat sheet
+    </div>
+
+    <header class="lesson-head">
+      <p class="lesson-eyebrow">REFERENCE</p>
+      <h1 class="lesson-title">Copilot CLI cheat sheet</h1>
+      <div class="lesson-meta-row">
+        <span class="meta-item">For partner consultants. Print this or keep it open during and after the course.</span>
+      </div>
+    </header>
+
+    <div class="body">
+
+<div class="callout-info">
+<strong>For partner consultants.</strong> Print this or keep it open during and after the course.
+</div>
+
+<h2>The #1 rule</h2>
+
+<p><strong>Just talk to it.</strong> You don't need to memorize commands or syntax. Type what you want in plain English:</p>
+
+<ul>
+<li><code>Help me prep for the meeting with Acme tomorrow</code></li>
+<li><code>What went wrong with that last command?</code></li>
+<li><code>How do I add a new MCP server?</code></li>
+<li><code>Explain what you just did</code></li>
+</ul>
+
+<p>The prompts and commands below are useful shortcuts. Natural language always works. If you're stuck, ask: <code>How do I...</code></p>
+
+<h2>The CLI mental model</h2>
+
+<table>
+<thead>
+<tr>
+<th>Piece</th>
+<th>What it is</th>
+<th>Why you care</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Copilot</strong></td>
+<td>The AI that ties everything together</td>
+<td>The thing you talk to</td>
+</tr>
+<tr>
+<td><strong>MCP servers</strong></td>
+<td>Adapters that plug Copilot into other systems</td>
+<td>Reach: filesystem, GitHub, M365, Notion, your own</td>
+</tr>
+<tr>
+<td><strong>Instructions</strong></td>
+<td>Rules that shape every output automatically</td>
+<td>Write once, always active</td>
+</tr>
+<tr>
+<td><strong>Skills</strong></td>
+<td>Reusable workflows that trigger on phrases</td>
+<td>Same job, repeat reliably</td>
+</tr>
+<tr>
+<td><strong>Agents</strong></td>
+<td>Scoped helpers for specific kinds of work</td>
+<td>A "writing reviewer" or "deal shaper" you can summon</td>
+</tr>
+</tbody>
+</table>
+
+<p>You don't need to understand every piece on day one. Start with Copilot plus one or two MCP servers. Skills and agents come naturally as you spot work you repeat.</p>
+
+<h2>Essential commands</h2>
+
+<p>Inside Copilot CLI (after running <code>copilot</code>):</p>
+
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/mcp</code></td>
+<td>See your connected MCP servers</td>
+</tr>
+<tr>
+<td><code>/model</code></td>
+<td>Switch AI model</td>
+</tr>
+<tr>
+<td><code>/plan</code></td>
+<td>Create a structured plan before executing</td>
+</tr>
+<tr>
+<td><code>/research</code></td>
+<td>Deep investigation with web search + citations</td>
+</tr>
+<tr>
+<td><code>/resume</code></td>
+<td>Pick up a previous session with full context</td>
+</tr>
+<tr>
+<td><code>/compact</code></td>
+<td>Summarize the conversation to free up context</td>
+</tr>
+<tr>
+<td><code>/skills</code></td>
+<td>Browse your available skills</td>
+</tr>
+<tr>
+<td><code>/restart</code></td>
+<td>Reload Copilot CLI so new MCP servers or skills register</td>
+</tr>
+<tr>
+<td><code>/help</code></td>
+<td>Show all commands</td>
+</tr>
+<tr>
+<td><code>/exit</code></td>
+<td>Leave Copilot CLI</td>
+</tr>
+</tbody>
+</table>
+
+<h2>Referencing files and folders</h2>
+
+<p>The <code>@</code> symbol points Copilot at files. It reads the file and uses it as context for the conversation.</p>
+
+<table>
+<thead>
+<tr>
+<th>Syntax</th>
+<th>What it does</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@file</code></td>
+<td>Single file</td>
+<td><code>@notes.txt analyze these workshop notes</code></td>
+</tr>
+<tr>
+<td><code>@folder/</code></td>
+<td>All files in a folder</td>
+<td><code>@customer-notes/ give me an overview</code></td>
+</tr>
+<tr>
+<td><code>@file1 @file2</code></td>
+<td>Multiple files</td>
+<td><code>@rfp.txt @capability.md draft a response</code></td>
+</tr>
+<tr>
+<td><code>#number</code></td>
+<td>GitHub issue or PR</td>
+<td><code>#42 what is this about?</code></td>
+</tr>
+<tr>
+<td><code>!command</code></td>
+<td>Run a shell command</td>
+<td><code>!dir</code></td>
+</tr>
+</tbody>
+</table>
+
+<div class="callout-info">
+<strong>💡 Tip:</strong> You don't need <code>@</code> for everything. If you're asking a question or working with data from MCP tools, plain language works. Use <code>@</code> when you have a specific file you want Copilot to read.
+</div>
+
+<h2>Reusable workflow shapes</h2>
+
+<h3>Customer briefing</h3>
+
+<pre><code>@customer-notes.txt Build me a structured customer briefing:
+- One-line customer summary
+- Real pain (not surface ask)
+- Buying group with each person's stake
+- Deal-stopping risks
+- Three sharp questions for the next call
+- Recommended next step
+Be opinionated. Don't pad.</code></pre>
+
+<h3>Document analysis</h3>
+
+<pre><code>@document.txt You're a senior reviewer. Tell me:
+- The three things that matter most
+- The two things that will sink us if we ignore them
+- The single sentence I should quote when I share this with my team
+Take a position.</code></pre>
+
+<h3>Post-meeting recap</h3>
+
+<pre><code>@meeting-notes.txt Build me a clean recap:
+- Two-line factual summary
+- Decisions and actions with owners and dates
+- Open questions
+- Relationship temperature (honest)
+- A short follow-up email I can send today</code></pre>
+
+<h3>Pipeline review (on a CSV or notes)</h3>
+
+<pre><code>@pipeline.csv Sort these opportunities by where they're stuck.
+For each stuck deal:
+- The one thing that unblocks it
+- Whether I should kill, defer, or accelerate
+- A specific next-step</code></pre>
+
+<h2>MCP power-up prompts (if you have these MCPs installed)</h2>
+
+<h3>Filesystem MCP</h3>
+
+<pre><code>Read every .txt file in this folder and find the three biggest themes across all of them.</code></pre>
+
+<pre><code>Find the most recent customer notes file in ~/Documents/customers and build me a briefing from it.</code></pre>
+
+<h3>GitHub MCP (built in)</h3>
+
+<pre><code>Show me the open issues on JW-Sthlm/ai-operator-intro tagged "bug". For each, suggest a fix.</code></pre>
+
+<pre><code>Read the README of microsoft/semantic-kernel and tell me, in 200 words, what this is and whether it fits a partner I'm working with.</code></pre>
+
+<h3>M365 MCP (optional, tenant-gated)</h3>
+
+<pre><code>What meetings do I have today? For each, find any relevant emails from the past two weeks.</code></pre>
+
+<pre><code>Draft a follow-up email to the people on yesterday's 14:30 call. Reference the action items we agreed.</code></pre>
+
+<h2>Four properties that make CLI different</h2>
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>What it means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Tool-connected</strong></td>
+<td>Calls real systems through MCP servers. Not guesses.</td>
+</tr>
+<tr>
+<td><strong>Repeatable</strong></td>
+<td>Same workflow, different input. Reusable patterns.</td>
+</tr>
+<tr>
+<td><strong>Inspectable</strong></td>
+<td>Output is an artifact (file, plan, doc), not a chat bubble that scrolls away.</td>
+</tr>
+<tr>
+<td><strong>Persistent</strong></td>
+<td><code>/resume</code> continues where you left off, across days.</td>
+</tr>
+</tbody>
+</table>
+
+<h2>Self-study resources</h2>
+
+<ul>
+<li><strong>Beginner course (developer-leaning, approximately 2h):</strong> <a href="https://awesome-copilot.github.com/learning-hub/cli-for-beginners/">Copilot CLI for Beginners on Learning Hub</a></li>
+<li><strong>Official docs:</strong> <a href="https://docs.github.com/copilot/how-tos/copilot-cli">docs.github.com/copilot/how-tos/copilot-cli</a></li>
+<li><strong>MCP servers directory:</strong> <a href="https://modelcontextprotocol.io/servers">modelcontextprotocol.io/servers</a></li>
+<li><strong>Source course repo:</strong> <a href="https://github.com/github/copilot-cli-for-beginners">github.com/github/copilot-cli-for-beginners</a></li>
+</ul>
+
+<h2>Keyboard shortcuts</h2>
+
+<table>
+<thead>
+<tr>
+<th>Shortcut</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Shift+Tab</code></td>
+<td>Cycle modes (suggest into autopilot)</td>
+</tr>
+<tr>
+<td><code>Ctrl+C</code></td>
+<td>Cancel current action</td>
+</tr>
+<tr>
+<td><code>Ctrl+C</code> times 2</td>
+<td>Exit</td>
+</tr>
+<tr>
+<td><code>Ctrl+L</code></td>
+<td>Clear screen</td>
+</tr>
+</tbody>
+</table>
+
+<h2>See also</h2>
+
+<ul>
+<li>📚 <a href="after-session-resources.html">After-session resources</a>. Deeper material when you're ready.</li>
+<li>🔧 <a href="troubleshooting.html">Troubleshooting</a>. Common issues and fixes.</li>
+</ul>
+
+    </div>
+
+    <nav class="lesson-nav">
+      <a class="prev" href="../"><div class="nav-dir">Back</div><div class="nav-title">Back to landing</div></a>
+      <a class="next" href="troubleshooting.html"><div class="nav-dir">Next</div><div class="nav-title">Troubleshooting</div></a>
+    </nav>
+  </main>
+</div>
+
+<footer class="site-foot">
+  Adapted from <a href="https://github.com/github/copilot-cli-for-beginners" target="_blank" rel="noopener">GitHub Copilot CLI for Beginners</a> (MIT). Community and partner enablement material. Not an official Microsoft or GitHub product.
+</footer>
+
+</body>
+</html>

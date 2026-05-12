@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Exercise 1: Build your customer briefing · AI Operator Intro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;500;600;700&family=Cascadia+Code:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../course/style.css">
+<style>
+.body .callout-warn {
+  margin: 16px 0;
+  padding: 14px 18px;
+  background: var(--warn-bg);
+  border-left: 3px solid var(--warn);
+  border-radius: 8px;
+  color: var(--fg);
+}
+.body .callout-warn p { margin: 6px 0; }
+.body .callout-warn p:first-child { margin-top: 0; }
+.body .callout-warn p:last-child { margin-bottom: 0; }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a class="topnav-brand" href="../index.html">
+      <span class="brand-mark">&gt;_</span>
+      <span>Copilot CLI · Partner course</span>
+    </a>
+    <div class="topnav-links">
+      <a href="../setup.html">Setup guide</a>
+      <a href="../" class="always-visible">All resources</a>
+    </div>
+  </div>
+</nav>
+
+<div class="lesson-shell" style="grid-template-columns: 1fr;">
+  <main class="main">
+    <div class="crumb">
+      <a href="../">All resources</a> &nbsp;›&nbsp; Exercise 1
+    </div>
+
+    <header class="lesson-head">
+      <p class="lesson-eyebrow">HANDS-ON</p>
+      <h1 class="lesson-title">Exercise 1: Build your customer briefing</h1>
+      <div class="lesson-meta-row">
+        <span class="meta-item">⏱️ <strong>~8 min</strong></span>
+        <span class="meta-item">🎯 <strong>Use Copilot CLI to build a real customer briefing from notes you already have</strong></span>
+      </div>
+    </header>
+
+    <div class="body">
+      <blockquote>
+        <p><strong>Time:</strong> ~8 min</p>
+        <p><strong>Format:</strong> Guided start, then explore on your own</p>
+        <p><strong>Goal:</strong> Use Copilot CLI to build a real customer briefing from notes you already have</p>
+      </blockquote>
+
+      <blockquote>
+        <p>💡 <strong>Read-only by default.</strong> The prompts below read files and synthesize output. They don't send emails, create CRM records, or modify anything. If Copilot ever proposes to create or change something, you'll see it before it runs. Review then approve.</p>
+      </blockquote>
+
+      <p>The prompts are starting points. Rephrase them. Shorten them. Talk to Copilot like a colleague. There's no syntax to memorize.</p>
+
+      <h2>Before you start</h2>
+
+      <p>You need a working folder and a notes file in it. Both are quick.</p>
+
+      <ol>
+        <li>
+          <strong>Open a folder you can write to.</strong> If you don't have one, ask Copilot:
+          <pre><code>Create a folder called ai-operator-intro in my projects directory and open it.</code></pre>
+          Any files Copilot reads (with <code>@</code>) or creates will live here.
+        </li>
+
+        <li>
+          <strong>Add a notes file.</strong> Save the block below as <code>customer-notes.txt</code> in your working folder, or use a real one of your own if you have it.
+          <pre><code>Discovery call notes. Acme Retail, 12 Nov.
+
+- Mid-sized European retail chain, ~140 stores, ~3,400 employees.
+- Pain: Black Friday and Christmas peaks crash their on-prem analytics.
+    Last year they couldn't ship a single promo dashboard in time.
+- CEO wants "real-time" sales visibility. Doesn't have a definition yet.
+- Tech estate: SQL Server on-prem, Power BI, some Azure (storage only).
+    No data engineering team. Two analysts who live in Excel.
+- Budget signal: open to a 6-week pilot. Annual capex decision in Feb.
+- Buying group: CFO (sponsor), CIO (skeptic), Head of E-Com (champion).
+- Competition: another partner pitched a Snowflake migration last spring.
+    Customer didn't buy. CFO said "too far, too fast."
+- Open question: what's the minimum we can show by end of Jan that
+    proves real-time is real?</code></pre>
+        </li>
+      </ol>
+
+      <p>That's it. You have a folder and a file. Move on.</p>
+
+      <h2>Part A: Build the briefing, guided (4 min)</h2>
+
+      <p>In your working folder, launch Copilot CLI:</p>
+
+      <pre><code>copilot</code></pre>
+
+      <p>Paste this prompt:</p>
+
+      <pre><code>@customer-notes.txt Build me a structured customer briefing for an internal meeting tomorrow. Use this shape:
+
+- One-line customer summary
+- The real pain (not the surface ask)
+- Buying group: who's in, what each cares about, who's the blocker
+- Where this deal stops if we don't address something specific
+- Three sharp questions we should ask in the next call
+- A "minimum credible Jan demo" idea, given everything in the notes
+- Risks I should flag to my account team before the meeting
+
+Be opinionated. If the notes don't support a section, say so. Don't pad.</code></pre>
+
+      <p><strong>What good looks like:</strong> A briefing that reads like a senior colleague wrote it. Not a regurgitation of the notes. Calls out the CFO blocker. Names the Snowflake-shaped trauma. Picks a real Jan demo angle.</p>
+
+      <div class="callout-warn">
+        <p><strong>Common trap.</strong> If you get back the notes reformatted as bullets, the prompt was too soft. Tell Copilot: <em>"That's just my notes restructured. I want analysis. Take a position."</em></p>
+      </div>
+
+      <h2>Part B: Explore (4 min)</h2>
+
+      <p>Try one or two follow-ups. Pick whatever's closest to your real work.</p>
+
+      <p><strong>Sharpen the Jan demo:</strong></p>
+
+      <pre><code>Take the "minimum credible Jan demo" idea and turn it into a one-slide pitch I could send to the CIO. Plain language. No buzzwords. Make the value land in the first sentence.</code></pre>
+
+      <p><strong>Pressure-test the deal:</strong></p>
+
+      <pre><code>Play devil's advocate. What are the three reasons this deal does not close? Be honest. If you think we're underweight on something, say so.</code></pre>
+
+      <p><strong>Draft the follow-up email:</strong></p>
+
+      <pre><code>Draft a short follow-up email to the Head of E-Com (the champion). Reference the Jan demo idea. Propose a 30-minute working session to nail the scope. Warm tone, not pushy.</code></pre>
+
+      <p><strong>Compare two customers:</strong></p>
+
+      <p>If you have notes on another customer in the same folder, try:</p>
+
+      <pre><code>Now do the same briefing for @other-customer-notes.txt. How is the buying motion different from Acme? Where would I prioritize my time this week?</code></pre>
+
+      <h2>What you just did</h2>
+
+      <ul>
+        <li>✅ Pointed Copilot at a real file with <code>@</code>. The file became context, not chat history.</li>
+        <li>✅ Asked for analysis, not a summary. Got back something opinionated.</li>
+        <li>✅ Iterated. Each follow-up sharpened the output, no setup required.</li>
+      </ul>
+
+      <p><strong>The shape that matters:</strong> This is the same pattern for an RFP, a partner deck, a meeting transcript, a customer email thread. Drop a file in, ask for the shape of output you want, iterate.</p>
+
+      <h2>What's next</h2>
+
+      <p>➡️ <a href="exercise-02-pick-your-scenario.md">Exercise 2: Pick your scenario</a> for more practice on your own data.</p>
+
+      <p>📋 Want a prompt reference? Open the <a href="../reference/cheat-sheet.md">cheat sheet</a>.</p>
+
+      <p>🔧 Something stuck? Check <a href="../reference/troubleshooting.md">troubleshooting</a>.</p>
+
+      <hr>
+    </div>
+
+    <nav class="lesson-nav">
+      <a class="prev" href="../"><div class="nav-dir">Back to</div><div class="nav-title">All resources</div></a>
+      <a class="next" href="../setup.html"><div class="nav-dir">Setup</div><div class="nav-title">Setup guide</div></a>
+    </nav>
+  </main>
+</div>
+
+<footer class="site-foot">
+  Adapted from <a href="https://github.com/github/copilot-cli-for-beginners" target="_blank" rel="noopener">GitHub Copilot CLI for Beginners</a> (MIT). Community and partner enablement material. Not an official Microsoft or GitHub product.
+</footer>
+
+</body>
+</html>

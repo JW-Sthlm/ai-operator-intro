@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Troubleshooting · Copilot CLI for partner consultants</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;500;600;700&family=Cascadia+Code:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../course/style.css">
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a class="topnav-brand" href="../index.html">
+      <span class="brand-mark">&gt;_</span>
+      <span>Copilot CLI · Partner course</span>
+    </a>
+    <div class="topnav-links">
+      <a href="../setup.html">Setup guide</a>
+      <a href="../" class="always-visible">All resources</a>
+    </div>
+  </div>
+</nav>
+
+<div class="lesson-shell">
+
+  <main class="main">
+    <div class="crumb">
+      <a href="../">All resources</a> &nbsp;›&nbsp; Reference &nbsp;›&nbsp; Troubleshooting
+    </div>
+
+    <header class="lesson-head">
+      <p class="lesson-eyebrow">REFERENCE</p>
+      <h1 class="lesson-title">Troubleshooting</h1>
+      <p class="lesson-meta-row"><span class="meta-item">The eight most common stuck-points and how to get past them.</span></p>
+    </header>
+
+    <div class="body">
+      <p>If you're hitting something not on this list, open an issue at <a href="https://github.com/JW-Sthlm/ai-operator-intro/issues">github.com/JW-Sthlm/ai-operator-intro/issues</a>.</p>
+
+      <h2 id="winget-not-found">1. <code>winget</code> not found</h2>
+
+      <p>You're on Windows but typing <code>winget</code> says "not recognized".</p>
+
+      <p><strong>Fix:</strong> Open the Microsoft Store. Search for "App Installer". Install it. It includes <code>winget</code>. Then restart PowerShell and try again.</p>
+
+      <p><strong>If you can't install App Installer</strong> (locked-down corporate laptop), use <a href="https://github.com/features/codespaces">GitHub Codespaces</a> instead. Free tier includes 60 hours a month. Open a codespace from any repo and run <code>copilot</code> there. Everything in the course works the same way.</p>
+
+      <h2 id="copilot-command-not-found">2. <code>copilot</code> command not found after install</h2>
+
+      <p>You ran the install, it succeeded, but <code>copilot</code> doesn't work.</p>
+
+      <p><strong>Fix:</strong> Close ALL PowerShell and terminal windows. Reopen a fresh one. The PATH only refreshes for new windows.</p>
+
+      <p><strong>Still missing?</strong> Try reinstalling:</p>
+
+      <pre><code>winget install GitHub.Copilot
+</code></pre>
+
+      <p><strong>Last resort:</strong> restart your computer. Sometimes Windows needs the reboot.</p>
+
+      <h2 id="login-fails">3. <code>/login</code> fails or times out</h2>
+
+      <p>You ran <code>copilot</code>, typed <code>/login</code>, browser opened, but something broke.</p>
+
+      <p><strong>Possible causes:</strong></p>
+
+      <ol>
+        <li>Your Copilot subscription isn't active.</li>
+        <li>A corporate proxy is blocking the device-code flow.</li>
+        <li>Your browser blocked the pop-up.</li>
+      </ol>
+
+      <p><strong>Fix:</strong></p>
+
+      <ul>
+        <li>Verify your subscription at <a href="https://github.com/settings/copilot">github.com/settings/copilot</a>. If you don't see "Copilot Free is active" or one of the paid plans, activate Free there.</li>
+        <li>Try the login on a personal network (home wifi, mobile hotspot). Corporate proxies sometimes block the device-code flow.</li>
+        <li>Check your browser allowed the pop-up. Some browsers silently block them.</li>
+      </ul>
+
+      <h2 id="gh-auth-not-found"><code>gh auth login</code> shows <code>not_found</code> error</h2>
+
+      <p>The browser shows <code>/login/device/failure?reason=not_found</code>.</p>
+
+      <p><strong>Cause:</strong> You pasted a stale device code. Every new <code>gh auth login</code> invalidates all previous codes. Only the most recent one works.</p>
+
+      <p><strong>Fix:</strong> Don't re-run <code>gh auth login</code>. Look at your terminal. The most recent code shown there is still valid. Go to <a href="https://github.com/login/device">github.com/login/device</a> and paste that code.</p>
+
+      <h2 id="mcp-not-showing">5. MCP servers not showing in <code>/mcp</code></h2>
+
+      <p>You installed an MCP server (filesystem, M365, GitHub, whatever) but <code>/mcp</code> doesn't list it.</p>
+
+      <p><strong>Fix:</strong> Did you run <code>/restart</code> after the install? MCP servers register when Copilot CLI starts. New ones don't appear until you restart.</p>
+
+      <pre><code>/restart
+</code></pre>
+
+      <p><strong>Still missing?</strong> Ask Copilot directly. It can diagnose:</p>
+
+      <pre><code>My MCP servers aren't showing up. Can you help me diagnose and fix this?
+</code></pre>
+
+      <p><strong>If you want to look manually:</strong> check that <code>~/.copilot/mcp-config.json</code> exists and is valid JSON. A typo there breaks everything.</p>
+
+      <h2 id="m365-mcp-admin">6. M365 MCP install says "needs admin approval"</h2>
+
+      <p>You tried to install the M365 MCP server. It failed with an admin-consent error.</p>
+
+      <p><strong>Cause:</strong> Your Microsoft 365 tenant (your company's M365) blocks third-party app consent by default. This is normal corporate hygiene.</p>
+
+      <p><strong>Fix options:</strong></p>
+
+      <ol>
+        <li><strong>Ask IT to approve the app.</strong> They can grant tenant-wide consent for the M365 MCP server. Send them the GitHub Marketplace link.</li>
+        <li><strong>Skip M365 for now.</strong> The course works fine without it. Use filesystem MCP and GitHub MCP instead. Every pattern in the course transfers.</li>
+      </ol>
+
+      <h2 id="copilot-wrong-answers">7. Copilot gives wrong or irrelevant answers</h2>
+
+      <p>The output doesn't match what you asked for.</p>
+
+      <p><strong>Tips that fix most cases:</strong></p>
+
+      <ul>
+        <li><strong>Be more specific.</strong> "In the customer notes about Acme Retail's CFO concerns" beats "look at my notes".</li>
+        <li><strong>Tell it what's wrong.</strong> "That's not what I meant. The CFO isn't worried about cost, she's worried about timeline." Copilot adjusts.</li>
+        <li><strong>Reset context.</strong> If the conversation has been long, type <code>/compact</code> to summarize it. Or just close Copilot and restart.</li>
+        <li><strong>Switch model.</strong> Different models behave differently. Try <code>/model</code> and pick another one if the current one is off.</li>
+      </ul>
+
+      <h2 id="rate-limit">8. "Rate limit exceeded"</h2>
+
+      <p>You hit your monthly Copilot request limit.</p>
+
+      <p><strong>Fix:</strong> Wait until next month. Or upgrade to Copilot Pro at <a href="https://github.com/settings/copilot">github.com/settings/copilot</a>. Free includes a generous monthly allowance but heavy use can run through it.</p>
+
+      <h2 id="still-stuck">Still stuck?</h2>
+
+      <ol>
+        <li><strong>Ask Copilot first.</strong> Type <code>I'm having trouble with [describe the problem]</code>. It can often help you diagnose.</li>
+        <li><strong>Search GitHub issues.</strong> <a href="https://github.com/JW-Sthlm/ai-operator-intro/issues">github.com/JW-Sthlm/ai-operator-intro/issues</a>. Someone may have hit the same thing.</li>
+        <li><strong>Open a new issue.</strong> Include your OS, what you typed, and the exact error. Screenshots help.</li>
+        <li><strong>Check the official docs.</strong> <a href="https://docs.github.com/copilot">docs.github.com/copilot</a> for everything that's not in this guide.</li>
+      </ol>
+    </div>
+
+    <nav class="lesson-nav">
+      <a class="prev" href="cheat-sheet.html"><div class="nav-dir">Previous</div><div class="nav-title">Cheat sheet</div></a>
+      <a class="next" href="../index.html"><div class="nav-dir">Next</div><div class="nav-title">Back to landing</div></a>
+    </nav>
+  </main>
+</div>
+
+<footer class="site-foot">
+  Adapted from <a href="https://github.com/github/copilot-cli-for-beginners" target="_blank" rel="noopener">GitHub Copilot CLI for Beginners</a> (MIT). Community and partner enablement material. Not an official Microsoft or GitHub product.
+</footer>
+
+</body>
+</html>

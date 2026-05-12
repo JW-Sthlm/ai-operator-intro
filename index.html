@@ -35,6 +35,19 @@
   a.inline{color:var(--purple);text-decoration:none;}
   a.inline:hover{text-decoration:underline;}
 
+  /* Companion-site bridge */
+  .bridge-card{display:flex;align-items:center;justify-content:space-between;gap:24px;background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:24px 28px 24px 32px;text-decoration:none;color:inherit;transition:border-color .2s,transform .2s,box-shadow .2s;margin:0 0 12px;position:relative;overflow:hidden;}
+  .bridge-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--purple),var(--pink));}
+  .bridge-card:hover{border-color:var(--purple);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.3);}
+  .bridge-text{flex:1;min-width:0;}
+  .bridge-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--purple);letter-spacing:.12em;text-transform:uppercase;font-weight:700;display:block;margin-bottom:8px;}
+  .bridge-text h2{font-size:20px;font-weight:700;margin:0 0 6px;color:var(--text);line-height:1.2;}
+  .bridge-text p{font-size:14px;color:var(--muted);margin:0;line-height:1.55;max-width:60ch;}
+  .bridge-cta{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--purple);font-weight:600;letter-spacing:.04em;white-space:nowrap;}
+  .bridge-cta .arrow{display:inline-block;margin-left:4px;transition:transform .2s;}
+  .bridge-card:hover .bridge-cta .arrow{transform:translateX(4px);}
+  @media(max-width:640px){.bridge-card{flex-direction:column;align-items:flex-start;gap:14px;padding:22px 22px 22px 26px;}.bridge-cta{align-self:flex-end;}}
+
   /* Why-CLI explainer */
   .explainer{background:var(--panel);border:1px solid var(--border);border-radius:12px;margin:0 0 40px;overflow:hidden;}
   .explainer summary{padding:18px 22px;cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px;font-weight:700;font-size:15px;color:var(--text);}
@@ -146,13 +159,13 @@
 
   <div class="section-label">Try it on your work</div>
   <div class="cards">
-    <a class="card" href="exercises/exercise-01-build-your-briefing.md">
+    <a class="card" href="exercises/exercise-01-build-your-briefing.html">
       <span class="icon">📋</span>
       <h2>Exercise 1: Customer briefing</h2>
       <p>Build a real pre-meeting briefing using your own customer data. Copy-paste prompts.</p>
       <span class="card-tag amber">hands-on</span>
     </a>
-    <a class="card" href="exercises/track-caip-deal-shaping.md">
+    <a class="card" href="exercises/track-caip-deal-shaping.html">
       <span class="icon">🎯</span>
       <h2>CAIP track: deal shaping</h2>
       <p>Shape an Azure platform opportunity. Qualify, gap-analyze, draft a one-pager.</p>
@@ -162,12 +175,12 @@
 
   <div class="section-label">Reference</div>
   <div class="cards">
-    <a class="card" href="reference/cheat-sheet.md">
+    <a class="card" href="reference/cheat-sheet.html">
       <span class="icon">📎</span>
       <h2>Cheat sheet</h2>
       <p>Commands, prompts, and workflows. All on one page.</p>
     </a>
-    <a class="card" href="reference/troubleshooting.md">
+    <a class="card" href="reference/troubleshooting.html">
       <span class="icon">🔧</span>
       <h2>Troubleshooting</h2>
       <p>The top failures with copy-paste fixes.</p>
@@ -179,10 +192,19 @@
     </a>
   </div>
 
+  <div class="section-label">Companion site</div>
+  <a class="bridge-card" href="https://jw-sthlm.github.io/frontier-consultancy-public/" target="_blank" rel="noopener">
+    <div class="bridge-text">
+      <span class="bridge-eyebrow">FRONTIER CONSULTANCY · CAIP · AIBS · SECURITY</span>
+      <h2>For the people who write code for a living</h2>
+      <p>Three AI-first delivery tracks for partner consultants. CAIP for Azure platform work. AIBS for Dynamics. Security in scoping. Same operator mindset, applied to delivery.</p>
+    </div>
+    <div class="bridge-cta">Open Frontier Consultancy<span class="arrow">→</span></div>
+  </a>
+
   <div class="meta">
     <p><strong>Maintained by:</strong> Johan Wallquist · <a class="inline" href="https://www.linkedin.com/in/johanwallquist/" target="_blank">LinkedIn</a></p>
     <p><strong>Source:</strong> <a class="inline" href="https://github.com/JW-Sthlm/ai-operator-intro" target="_blank">github.com/JW-Sthlm/ai-operator-intro</a></p>
-    <p><strong>Sister site:</strong> if you write code for a living, see <a class="inline" href="https://github.com/JW-Sthlm/frontier-consultancy" target="_blank">Frontier Consultancy</a> for the technical AI-first delivery tracks.</p>
   </div>
 
   <div class="disclaimer">
