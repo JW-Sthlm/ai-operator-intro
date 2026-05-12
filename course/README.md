@@ -35,7 +35,7 @@ No coding experience needed. If you can install software and follow numbered ste
 
 ## How this differs from the GitHub original
 
-The [GitHub original](https://gh.io/copilot-cli-course) is excellent, but written for developers building a Python book app. This version:
+The [GitHub original on Learning Hub](https://awesome-copilot.github.com/learning-hub/cli-for-beginners/) is excellent, but written for developers building a Python book app. This version:
 
 - Uses consulting scenarios throughout. RFP triage, partner briefings, deal narratives, marketing briefs.
 - Strips the developer prerequisites. No Node experience assumed, no Python knowledge needed.

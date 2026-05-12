@@ -604,3 +604,183 @@ footer.site-foot a { color: var(--accent); }
 .lesson-nav a.prev::before { content: "← "; color: var(--accent); }
 .lesson-nav a.next .nav-title::after { content: " →"; color: var(--accent); }
 .lesson-nav .nav-spacer { visibility: hidden; }
+
+
+/* ── v1.1 polish: fake terminal window ── */
+.term {
+  background: #1e1e2e;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12), 0 0 0 1px rgba(255,255,255,0.04);
+  margin: 18px 0;
+}
+.term-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #181825;
+  padding: 9px 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.term-bar .dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.term-bar .dot.red { background: #ff5f56; }
+.term-bar .dot.yellow { background: #ffbd2e; }
+.term-bar .dot.green { background: #27c93f; }
+.term-bar .term-title {
+  margin-left: 10px;
+  font-family: 'Cascadia Code', 'Fira Code', monospace;
+  font-size: 12px;
+  color: #a6adc8;
+  letter-spacing: 0.02em;
+}
+.term-body {
+  padding: 16px 18px;
+  font-family: 'Cascadia Code', 'Fira Code', monospace;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--code-fg);
+  margin: 0;
+  overflow-x: auto;
+  white-space: pre;
+}
+.term-body .prompt { color: #5DA9D9; }
+.term-body .cmd { color: #f5f5f5; }
+.term-body .out { color: #a6adc8; }
+.term-body .accent { color: #C7A8FF; }
+.term-body .ok { color: #a6e3a1; }
+.term-body .warn { color: #f9e2af; }
+
+/* ── v1.1 polish: numbered flow cards (Device Auth Flow style) ── */
+.flow-cards {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin: 24px 0 8px;
+}
+@media (max-width: 900px) {
+  .flow-cards { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 520px) {
+  .flow-cards { grid-template-columns: 1fr; }
+}
+.flow-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 16px 16px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.flow-card .flow-num {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #8957E5 0%, #4493F8 100%);
+  color: #fff;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(137,87,229,0.3);
+}
+.flow-card .flow-icon { font-size: 22px; line-height: 1; }
+.flow-card .flow-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  margin: 2px 0 0;
+  color: var(--fg);
+}
+.flow-card .flow-desc {
+  font-size: 13px;
+  color: var(--fg-muted);
+  line-height: 1.45;
+  margin: 0;
+}
+.flow-caption {
+  font-size: 13px;
+  color: var(--fg-muted);
+  text-align: center;
+  margin: 4px 0 18px;
+  font-style: italic;
+}
+
+/* ── v1.1 polish: Go deeper callout ── */
+.go-deeper {
+  background: linear-gradient(135deg, rgba(137,87,229,0.06) 0%, rgba(68,147,248,0.06) 100%);
+  border: 1px solid rgba(137,87,229,0.25);
+  border-radius: 12px;
+  padding: 22px 24px;
+  margin: 36px 0 24px;
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+}
+.go-deeper .go-deeper-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.go-deeper-body { flex: 1; }
+.go-deeper-label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #6e40c9;
+  margin: 0 0 4px;
+}
+.go-deeper-body h3 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 6px;
+  color: var(--fg);
+}
+.go-deeper-body p {
+  font-size: 14.5px;
+  color: var(--fg-muted);
+  margin: 0 0 10px;
+  line-height: 1.55;
+}
+.go-deeper-body a.go-deeper-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: #6e40c9;
+  text-decoration: none;
+  padding: 8px 14px;
+  background: #fff;
+  border: 1px solid rgba(110,64,201,0.25);
+  border-radius: 8px;
+  transition: background 0.15s, border-color 0.15s, transform 0.15s;
+}
+.go-deeper-body a.go-deeper-link:hover {
+  background: #f3edff;
+  border-color: rgba(110,64,201,0.5);
+  transform: translateY(-1px);
+}
+
+/* ── v1.1 polish: lesson hero image ── */
+.lesson-hero-image {
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  border-radius: 12px;
+  margin: 12px auto 24px;
+  display: block;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}

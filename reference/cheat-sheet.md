@@ -145,7 +145,7 @@ Draft a follow-up email to the people on yesterday's 14:30 call. Reference the a
 
 ## Self-study resources
 
-- **Beginner course (developer-leaning, ~2h):** [gh.io/copilot-cli-course](https://gh.io/copilot-cli-course)
+- **Beginner course (developer-leaning, ~2h):** [Copilot CLI for Beginners on Learning Hub](https://awesome-copilot.github.com/learning-hub/cli-for-beginners/)
 - **Official docs:** [docs.github.com/copilot/how-tos/copilot-cli](https://docs.github.com/copilot/how-tos/copilot-cli)
 - **MCP servers directory:** [modelcontextprotocol.io/servers](https://modelcontextprotocol.io/servers)
 - **Source course repo:** [github.com/github/copilot-cli-for-beginners](https://github.com/github/copilot-cli-for-beginners)

@@ -58,8 +58,13 @@
 
   .cmd-wrap { margin: 14px 0; }
   .cmd-wrap pre { margin: 0; border-top-left-radius: 0; border-top-right-radius: 0; }
-  .cmd-header { display: flex; align-items: center; justify-content: space-between; background: #2a2a3e; color: var(--code-fg); padding: 7px 14px; border-radius: 10px 10px 0 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-family: 'Inter', sans-serif; }
-  .cmd-label { font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; font-size: 11px; display: flex; align-items: center; gap: 6px; }
+  .cmd-header { display: flex; align-items: center; justify-content: space-between; background: #2a2a3e; color: var(--code-fg); padding: 7px 14px; border-radius: 10px 10px 0 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-family: 'Inter', sans-serif; gap: 10px; }
+  .cmd-dots { display: inline-flex; gap: 5px; align-items: center; margin-right: 6px; }
+  .cmd-dots .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .cmd-dots .dot.red { background: #ff5f56; }
+  .cmd-dots .dot.yellow { background: #ffbd2e; }
+  .cmd-dots .dot.green { background: #27c93f; }
+  .cmd-label { font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; font-size: 11px; display: flex; align-items: center; gap: 6px; flex: 1; }
   .cmd-label::before { font-family: 'Cascadia Code', monospace; font-size: 12px; }
   .shell-ps .cmd-label { opacity: 0.78; }
   .shell-ps .cmd-label::before { content: ">_"; color: #5DA9D9; opacity: 1; }
@@ -69,6 +74,17 @@
   .cmd-copy { background: transparent; color: inherit; border: 1px solid rgba(255,255,255,0.18); border-radius: 6px; padding: 3px 11px; font-size: 11px; font-weight: 500; cursor: pointer; transition: background .12s, border-color .12s; font-family: 'Inter', sans-serif; }
   .cmd-copy:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.32); }
   .cmd-copy.copied { background: var(--success); color: #fff; border-color: var(--success); }
+
+  /* Numbered flow cards (Device Auth Flow) */
+  .flow-cards { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin: 22px 0 6px; }
+  @media (max-width: 900px) { .flow-cards { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px) { .flow-cards { grid-template-columns: 1fr; } }
+  .flow-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 14px 14px; display: flex; flex-direction: column; gap: 6px; }
+  .flow-card .flow-num { width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, #8957E5 0%, #4493F8 100%); color: #fff; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 13px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(137,87,229,0.3); }
+  .flow-card .flow-icon { font-size: 20px; line-height: 1; margin-top: 2px; }
+  .flow-card .flow-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 13.5px; margin: 2px 0 0; color: var(--fg); }
+  .flow-card .flow-desc { font-size: 12.5px; color: var(--fg-muted); line-height: 1.45; margin: 0; }
+  .flow-caption { font-size: 12.5px; color: var(--fg-muted); text-align: center; margin: 2px 0 14px; font-style: italic; }
 
   .tip, .warn { border-radius: 10px; padding: 14px 18px; margin: 16px 0; font-size: 14px; line-height: 1.5; }
   .tip { background: var(--accent-light); border-left: 4px solid var(--accent); }
@@ -288,6 +304,42 @@
       <li><em>How would you like to authenticate GitHub CLI?</em> → <strong>Login with a web browser</strong></li>
     </ul>
     <p>It shows a one-time code and offers to open a browser. Press Enter. Your browser opens. If GitHub asks you to sign in first, do so. Then paste the code and authorize.</p>
+
+    <p style="margin-top:18px;font-size:13.5px;color:var(--fg-muted);font-weight:600;letter-spacing:0.04em;text-transform:uppercase;">What just happened</p>
+    <div class="flow-cards">
+      <div class="flow-card">
+        <span class="flow-num">1</span>
+        <span class="flow-icon">💻</span>
+        <p class="flow-title">Terminal</p>
+        <p class="flow-desc">You ran <code>gh auth login</code>. PowerShell prints an 8-character code.</p>
+      </div>
+      <div class="flow-card">
+        <span class="flow-num">2</span>
+        <span class="flow-icon">🌐</span>
+        <p class="flow-title">Browser</p>
+        <p class="flow-desc">A browser tab opens at <code>github.com/login/device</code>.</p>
+      </div>
+      <div class="flow-card">
+        <span class="flow-num">3</span>
+        <span class="flow-icon">🔢</span>
+        <p class="flow-title">Code</p>
+        <p class="flow-desc">Paste the 8-character code from your terminal into the page.</p>
+      </div>
+      <div class="flow-card">
+        <span class="flow-num">4</span>
+        <span class="flow-icon">✅</span>
+        <p class="flow-title">Authorize</p>
+        <p class="flow-desc">Click the green Authorize button. The page confirms.</p>
+      </div>
+      <div class="flow-card">
+        <span class="flow-num">5</span>
+        <span class="flow-icon">🎉</span>
+        <p class="flow-title">Signed in</p>
+        <p class="flow-desc">Back in PowerShell, you see <code>✓ Logged in as &lt;you&gt;</code>.</p>
+      </div>
+    </div>
+    <p class="flow-caption">This is the <em>device authorization flow</em>. The terminal and the browser talk through GitHub. The code is the handshake.</p>
+
     <p>When the page says <em>"Congratulations, you're all set,"</em> come back to PowerShell.</p>
 
     <div class="warn"><strong>⚠️ Don't re-run <code>gh auth login</code> if you hit a snag.</strong> Every new run invalidates all previous codes. If the browser is stuck, just go to <a class="inline" href="https://github.com/login/device" target="_blank">github.com/login/device</a> and paste the code from your terminal. The existing one is still valid. Only the <strong>most recent</strong> code in your terminal works. Older ones are dead.</div>
@@ -438,7 +490,7 @@ If the install fails or needs admin approval, stop and tell me what happened. Do
       </li>
       <li>
         <strong>📚 Go deeper</strong>
-        <p>GitHub's official <a class="inline" href="https://gh.io/copilot-cli-course" target="_blank">Copilot CLI for Beginners</a> is a longer, more developer-oriented deep dive. Optional but excellent.</p>
+        <p>GitHub's <a class="inline" href="https://awesome-copilot.github.com/learning-hub/cli-for-beginners/" target="_blank">Copilot CLI for Beginners</a> on Learning Hub is a longer, more developer-oriented deep dive. Optional but excellent.</p>
       </li>
     </ul>
   </div>
@@ -477,6 +529,9 @@ If the install fails or needs admin approval, stop and tell me what happened. Do
     wrap.className = 'cmd-wrap shell-' + shell;
     var header = document.createElement('div');
     header.className = 'cmd-header';
+    var dots = document.createElement('span');
+    dots.className = 'cmd-dots';
+    dots.innerHTML = '<span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>';
     var labelSpan = document.createElement('span');
     labelSpan.className = 'cmd-label';
     labelSpan.textContent = label;
@@ -508,6 +563,7 @@ If the install fails or needs admin approval, stop and tell me what happened. Do
         document.body.removeChild(ta);
       }
     });
+    header.appendChild(dots);
     header.appendChild(labelSpan);
     header.appendChild(btn);
     pre.parentNode.insertBefore(wrap, pre);

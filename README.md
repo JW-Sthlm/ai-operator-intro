@@ -24,7 +24,7 @@ If you build the solutions (architects, engineers, devs), the [Frontier Consulta
 
 ## How this is different from GitHub's official course
 
-GitHub's [Copilot CLI for Beginners](https://gh.io/copilot-cli-course) is excellent but written for developers building a Python app. This version:
+GitHub's [Copilot CLI for Beginners on Learning Hub](https://awesome-copilot.github.com/learning-hub/cli-for-beginners/) is excellent but written for developers building a Python app. This version:
 
 - Uses commercial consulting scenarios throughout. RFP triage, partner briefings, deal narratives, marketing campaign briefs.
 - Strips the developer prerequisites. No Node experience assumed, no Python knowledge needed.

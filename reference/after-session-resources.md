@@ -19,8 +19,8 @@ More track exercises (AIBS, Security) are on the backlog.
 | Resource | What it is | Time |
 |----------|-----------|------|
 | **[This course](../course/README.md)** | The four-lesson consultant version you're already in | 70 min |
-| [Copilot CLI for Beginners (source)](https://gh.io/copilot-cli-course) | The original GitHub course this is adapted from. Developer-focused. Eight chapters. Python sample app. | ~2 hours |
-| [Course repo (Codespaces-ready)](https://github.com/github/copilot-cli-for-beginners) | Code, exercises, and a sample app to practice with | Self-paced |
+| [Copilot CLI for Beginners on Learning Hub](https://awesome-copilot.github.com/learning-hub/cli-for-beginners/) | The full GitHub deep-dive. Developer-focused. Eight chapters. Python sample app. | ~2 hours |
+| [Course repo (Codespaces-ready)](https://github.com/github/copilot-cli-for-beginners) | Code, exercises, and a sample app to practice with. The repo this course is adapted from. | Self-paced |
 
 ## Recommended next steps
 
