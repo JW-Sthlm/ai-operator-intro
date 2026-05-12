@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Your first conversations · Copilot CLI for partner work</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;500;600;700&family=Cascadia+Code:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a class="topnav-brand" href="index.html">
+      <span class="brand-mark">&gt;_</span>
+      <span>Copilot CLI · Partner course</span>
+    </a>
+    <div class="topnav-links">
+      <a href="../setup.html">Setup guide</a>
+      <a href="../deck.html">Slides</a>
+      <a href="../" class="always-visible">All resources</a>
+    </div>
+  </div>
+</nav>
+
+<div class="lesson-shell">
+  <aside class="sidebar">
+    <p class="sidebar-h">Lessons</p>
+    <ol>
+      <li class=""><a class="" href="why-cli-for-partner-work.html">Why CLI for partner work</a></li>
+      <li class=""><a class="is-current" href="your-first-conversations.html">Your first conversations</a></li>
+      <li class=""><a class="" href="files-as-context.html">Drop a file in, get insight out</a></li>
+      <li class=""><a class="" href="mcp-power-ups.html">MCP power-ups: GitHub, M365, and more</a></li>
+    </ol>
+    <div class="sidebar-foot">
+      <a href="index.html">← Course home</a>
+      <a href="../setup.html">Setup guide</a>
+      <a href="../reference/cheat-sheet.md" target="_blank">Cheat sheet</a>
+      <a href="../reference/troubleshooting.md" target="_blank">Troubleshooting</a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="crumb">
+      <a href="index.html">Course</a> &nbsp;›&nbsp; Your first conversations
+    </div>
+
+    <header class="lesson-head">
+      <p class="lesson-eyebrow ">Foundations</p>
+      <h1 class="lesson-title">Your first conversations</h1>
+      <div class="lesson-meta-row">
+        <span class="meta-item">⏱️ <strong>20 min</strong></span>
+        <span class="meta-item">🎯 <strong>Summarize, rewrite, draft. Without leaving the terminal.</strong></span>
+      </div>
+    </header>
+
+    <div class="body">
+      <h2 id="the-three-modes-youll-use">The three modes you'll use</h2>
+<p>Copilot CLI has three modes. You'll use them all naturally. Helpful to know they exist.</p>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>What it is</th>
+<th>When to use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ask</strong> (default)</td>
+<td>Type a question, get an answer</td>
+<td>"Summarize this." "What does this mean?"</td>
+</tr>
+<tr>
+<td><strong>Agent</strong></td>
+<td>It can run commands, edit files</td>
+<td>"Find all PDFs in this folder." "Add a row to this CSV."</td>
+</tr>
+<tr>
+<td><strong>Plan</strong></td>
+<td>It explains what it would do <em>before</em> doing it</td>
+<td>High-stakes tasks. Anything touching real files.</td>
+</tr>
+</tbody>
+</table>
+<p>You don't switch modes manually. The CLI picks based on what you ask. If it asks "want me to run this command?", that is agent mode asking permission.</p>
+<p>⚠️ Always read what it is about to do. <em>Always.</em> Especially anything that says "delete" or "overwrite".</p>
+<hr>
+<h2 id="hands-on-four-conversations-to-try-right-now">🚀 Hands-on: four conversations to try right now</h2>
+<p>Open a fresh PowerShell. Type <code>copilot</code>. Wait for the prompt. Now run these in order.</p>
+<h3 id="1-summarize">1. Summarize</h3>
+<p>📖 Paste this into the CLI:</p>
+<blockquote>
+<p>Imagine you advise a Microsoft partner on AI services. A customer asks: "what's the difference between Azure OpenAI and Microsoft Foundry?" Give me a 4-bullet answer for a non-technical exec.</p>
+</blockquote>
+<p><strong>What you should get:</strong> a structured 4-bullet response. Decent first draft.</p>
+<p>What a session looks like in the terminal:</p>
+<pre><code class="language-text">PS C:\Users\you&gt; copilot
+✦ Copilot CLI · ready
+&gt; Imagine you advise a Microsoft partner on AI services...
+
+  • Azure OpenAI Service: ...
+  • Microsoft Foundry: ...
+  • Where they overlap: ...
+  • The exec takeaway: ...
+
+&gt; _
+</code></pre>
+<p><strong>Try one follow-up:</strong></p>
+<blockquote>
+<p>Now make it shorter. Two bullets. Same audience.</p>
+</blockquote>
+<p>Notice the CLI remembers what you asked before. That is the conversation context.</p>
+<h3 id="2-rewrite">2. Rewrite</h3>
+<p>📖 Paste this:</p>
+<blockquote>
+<p>Rewrite this in plain language for an exec audience: "We propose to leverage cross-functional synergies to drive accelerated value realization across the partner ecosystem through optimized workload distribution."</p>
+</blockquote>
+<p><strong>What you should get:</strong> something that doesn't sound like a robot wrote it.</p>
+<h3 id="3-draft">3. Draft</h3>
+<p>📖 Paste this:</p>
+<blockquote>
+<p>Draft a 6-line email to a customer asking to schedule a 30-min call to align on their AI roadmap. Friendly tone, single ask, suggest two time slots next week.</p>
+</blockquote>
+<p><strong>What you should get:</strong> a usable draft. Tweak the times, send.</p>
+<h3 id="4-reason-about-something">4. Reason about something</h3>
+<p>📖 Paste this:</p>
+<blockquote>
+<p>A customer is a mid-market retailer in the Nordics, around 800 employees. They currently use Dynamics 365 and want to add an AI use case. What three pilot use cases should they consider first and why?</p>
+</blockquote>
+<p><strong>What you should get:</strong> opinionated, not generic. Real reasoning. The CLI is good at this.</p>
+<hr>
+<h2 id="how-to-keep-a-session-productive">How to keep a session productive</h2>
+<p>After 5 to 10 messages your session is full of context. Good when you are refining one thing. Bad when you switch topics.</p>
+<p><strong>Rule of thumb:</strong> start a new session when you switch tasks.</p>
+<ul>
+<li>Same customer, different angles. Keep going.</li>
+<li>New customer, new task. Exit (<code>/exit</code>), reopen (<code>copilot</code>), start fresh.</li>
+</ul>
+<p>You'll get a feel for it. Costs nothing to start fresh.</p>
+<p>⚠️ <strong>Don't drag old context across topics.</strong> If you ask about Customer A then Customer B in the same session, Copilot may bleed Customer-A details into the Customer-B answer. Embarrassing. Just <code>/exit</code> between customers.</p>
+<hr>
+<h2 id="useful-slash-commands">Useful slash commands</h2>
+<p>Type <code>/</code> inside copilot to see the menu. The ones you'll actually use:</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/exit</code></td>
+<td>Leaves the session</td>
+</tr>
+<tr>
+<td><code>/login</code> / <code>/logout</code></td>
+<td>Auth</td>
+</tr>
+<tr>
+<td><code>/help</code></td>
+<td>Lists everything</td>
+</tr>
+<tr>
+<td><code>/mcp</code></td>
+<td>Shows what MCP servers are connected (covered in lesson 4)</td>
+</tr>
+</tbody>
+</table>
+<p>⬆️ at the prompt brings back your previous prompts. Good for tweaking the same prompt with small variations.</p>
+<hr>
+<details>
+<summary><strong>⚠️ Things that go wrong</strong>: quick reference, click to expand</summary>
+
+📖
+
+| What happens | Why | What to do |
+|--------------|-----|------------|
+| Answer is wrong or made up | Copilot doesn't actually know about your specific customer or product | Give it more context. Drop in the customer's website URL or a recent press release. |
+| Answer keeps repeating | You're stuck in a context loop | `/exit` and start fresh |
+| It refuses to do something | Safety filter triggered | Rephrase. If it is a legit ask, push back with context. |
+| Suspiciously confident answer | LLMs hallucinate | Spot-check anything specific (numbers, names, dates) |
+
+</details>
+
+<hr>
+<h2 id="try-this-on-your-real-work">🎯 Try this on your real work</h2>
+<p>📖 <strong>Pick one task you'll do this week</strong> (a customer email, a status update, a meeting summary) and run it through Copilot CLI before doing it the old way.</p>
+<p>Compare the time. Compare the quality. That is the only validation that matters.</p>
+<hr>
+<h2 id="ready-to-move-on-if">✅ Ready to move on if</h2>
+<ul>
+<li>You've had at least one useful conversation</li>
+<li>You know how to <code>/exit</code> and start fresh</li>
+<li>You can tell when a conversation has drifted and you should reset</li>
+</ul>
+<hr>
+    </div>
+
+    <nav class="lesson-nav">
+      <a class="prev" href="why-cli-for-partner-work.html"><div class="nav-dir">Previous</div><div class="nav-title">Why CLI for partner work</div></a>
+      <a class="next" href="files-as-context.html"><div class="nav-dir">Next</div><div class="nav-title">Drop a file in, get insight out</div></a>
+    </nav>
+  </main>
+</div>
+
+<footer class="site-foot">
+  Adapted from <a href="https://github.com/github/copilot-cli-for-beginners" target="_blank" rel="noopener">GitHub Copilot CLI for Beginners</a> (MIT). Community and partner enablement material. Not an official Microsoft or GitHub product.
+</footer>
+
+</body>
+</html>

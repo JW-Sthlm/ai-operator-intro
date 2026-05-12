@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Setup · The AI Operator Intro</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --fg: #0b0b0d;
+    --fg-muted: #5a5a66;
+    --bg: #fafafa;
+    --card: #fff;
+    --accent: #2D6E6D;
+    --accent-light: #EEF4F4;
+    --border: #e5e7eb;
+    --warn: #c4700a;
+    --warn-bg: #FFF7ED;
+    --warn-border: #FDDCAB;
+    --success: #16803C;
+    --success-bg: #F0FDF4;
+    --success-border: #BBF7D0;
+    --code-bg: #1e1e2e;
+    --code-fg: #cdd6f4;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--fg); line-height: 1.6; }
+
+  .wrap { max-width: 760px; margin: 0 auto; padding: 48px 24px 96px; }
+
+  .header { margin-bottom: 48px; }
+  .tag { display: inline-block; background: var(--accent-light); color: var(--accent); font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px; letter-spacing: .04em; text-transform: uppercase; margin-bottom: 16px; }
+  h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 36px; font-weight: 800; letter-spacing: -.02em; margin: 0 0 6px; }
+  .sub { color: var(--fg-muted); font-size: 17px; margin: 0 0 24px; }
+
+  .intro-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 12px; }
+  @media (max-width: 520px) { .intro-grid { grid-template-columns: 1fr; } }
+  .intro-item { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; }
+  .intro-item .emoji { font-size: 24px; margin-bottom: 6px; }
+  .intro-item .label { font-size: 13px; color: var(--fg-muted); }
+  .intro-item .value { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 16px; }
+
+  .reassurance { font-size: 14px; color: var(--fg-muted); text-align: center; margin: 0 0 48px; }
+
+  .step { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 32px; margin-bottom: 20px; position: relative; }
+  .step-number { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 13px; color: var(--accent); background: var(--accent-light); display: inline-block; padding: 4px 12px; border-radius: 999px; margin-bottom: 12px; letter-spacing: .04em; text-transform: uppercase; }
+  .step h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 22px; font-weight: 700; margin: 0 0 12px; }
+  .step h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 700; margin: 20px 0 8px; }
+  .step p, .step li { font-size: 15px; }
+  .step ul, .step ol { padding-left: 20px; }
+  .step li { margin-bottom: 6px; }
+
+  pre { background: var(--code-bg); color: var(--code-fg); border-radius: 10px; padding: 16px 20px; overflow-x: auto; font-size: 14px; line-height: 1.5; margin: 12px 0; }
+  code { font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace; font-size: 14px; }
+  p code, li code { background: #f0f0f5; padding: 2px 6px; border-radius: 4px; font-size: 13px; color: var(--fg); }
+
+  .cmd-wrap { margin: 14px 0; }
+  .cmd-wrap pre { margin: 0; border-top-left-radius: 0; border-top-right-radius: 0; }
+  .cmd-header { display: flex; align-items: center; justify-content: space-between; background: #2a2a3e; color: var(--code-fg); padding: 7px 14px; border-radius: 10px 10px 0 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-family: 'Inter', sans-serif; }
+  .cmd-label { font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; font-size: 11px; display: flex; align-items: center; gap: 6px; }
+  .cmd-label::before { font-family: 'Cascadia Code', monospace; font-size: 12px; }
+  .shell-ps .cmd-label { opacity: 0.78; }
+  .shell-ps .cmd-label::before { content: ">_"; color: #5DA9D9; opacity: 1; }
+  .shell-copilot .cmd-header { background: linear-gradient(180deg, #3a2e5c 0%, #2d2444 100%); border-bottom-color: rgba(199, 168, 255, 0.22); }
+  .shell-copilot .cmd-label { color: #D9C2FF; opacity: 1; }
+  .shell-copilot .cmd-label::before { content: "✦"; color: #C7A8FF; font-size: 14px; }
+  .cmd-copy { background: transparent; color: inherit; border: 1px solid rgba(255,255,255,0.18); border-radius: 6px; padding: 3px 11px; font-size: 11px; font-weight: 500; cursor: pointer; transition: background .12s, border-color .12s; font-family: 'Inter', sans-serif; }
+  .cmd-copy:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.32); }
+  .cmd-copy.copied { background: var(--success); color: #fff; border-color: var(--success); }
+
+  .tip, .warn { border-radius: 10px; padding: 14px 18px; margin: 16px 0; font-size: 14px; line-height: 1.5; }
+  .tip { background: var(--accent-light); border-left: 4px solid var(--accent); }
+  .tip strong { color: var(--accent); }
+  .warn { background: var(--warn-bg); border-left: 4px solid var(--warn); }
+  .warn strong { color: var(--warn); }
+
+  .step table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 14px; }
+  .step th, .step td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); }
+  .step th { font-weight: 600; background: var(--bg); font-size: 13px; text-transform: uppercase; letter-spacing: .03em; color: var(--fg-muted); }
+  .step td:first-child { font-weight: 500; white-space: nowrap; }
+
+  .checklist { list-style: none; padding: 0; margin: 16px 0; }
+  .checklist li { display: flex; gap: 12px; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid var(--border); font-size: 15px; }
+  .checklist li:last-child { border-bottom: none; }
+  .check-icon { flex-shrink: 0; width: 26px; height: 26px; background: var(--accent-light); color: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; }
+  .check-detail { flex: 1; }
+  .check-detail strong { display: block; margin-bottom: 2px; }
+  .check-cmd { font-size: 13px; color: var(--fg-muted); font-family: 'Cascadia Code', 'Fira Code', monospace; }
+  .check-pass { font-size: 13px; color: var(--success); font-weight: 500; }
+
+  .success { background: var(--success-bg); border: 2px solid var(--success-border); border-radius: 14px; padding: 32px; text-align: center; margin-bottom: 20px; }
+  .success .emoji { font-size: 48px; margin-bottom: 12px; }
+  .success h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 24px; font-weight: 800; color: var(--success); margin: 0 0 8px; }
+  .success p { font-size: 15px; color: var(--fg-muted); margin: 4px 0; }
+  .success ul { list-style: none; padding: 0; margin: 16px 0 0; display: inline-flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+  .success li { font-size: 14px; }
+
+  .next-steps { list-style: none; padding: 0; margin: 18px 0 0; display: grid; gap: 14px; }
+  .next-steps > li { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; }
+  .next-steps > li > strong { display: block; font-size: 15px; color: var(--fg); margin-bottom: 4px; }
+  .next-steps > li > p { margin: 0; font-size: 14px; color: var(--fg-muted); line-height: 1.55; }
+  .next-steps > li > p a { color: var(--accent); font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+  .next-steps > li > p a:hover { text-decoration: none; }
+
+  .footer { text-align: center; padding-top: 24px; }
+  .footer a { display: inline-block; color: var(--accent); font-weight: 600; font-size: 15px; text-decoration: none; padding: 10px 24px; border: 2px solid var(--accent); border-radius: 999px; transition: background .15s, color .15s; }
+  .footer a:hover { background: var(--accent); color: #fff; }
+
+  details.explainer { margin: 14px 0; border: 1px solid var(--border); border-radius: 10px; background: var(--card); transition: border-color .15s; }
+  details.explainer[open] { border-color: var(--accent); }
+  details.explainer summary { padding: 12px 16px; font-size: 14px; font-weight: 600; color: var(--accent); cursor: pointer; list-style: none; display: flex; align-items: center; gap: 10px; user-select: none; }
+  details.explainer summary::-webkit-details-marker { display: none; }
+  details.explainer summary::before { content: "▶"; font-size: 9px; transition: transform .15s; flex-shrink: 0; }
+  details.explainer[open] summary::before { transform: rotate(90deg); }
+  details.explainer .body { padding: 0 16px 14px; font-size: 14px; line-height: 1.6; color: var(--fg); border-top: 1px solid var(--border); padding-top: 12px; margin-top: 2px; }
+  details.explainer .body p { margin: 0 0 8px; }
+  details.explainer .body p:last-child { margin-bottom: 0; }
+
+  a.inline { color: var(--accent); text-decoration: none; }
+  a.inline:hover { text-decoration: underline; }
+
+  .progress { display: flex; gap: 6px; margin-bottom: 48px; }
+  .progress-dot { flex: 1; height: 4px; background: var(--border); border-radius: 999px; }
+  .progress-dot.active { background: var(--accent); }
+
+  .disclaimer { font-size: 12px; color: var(--fg-muted); background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 14px 18px; margin-top: 24px; line-height: 1.5; text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <span class="tag">Setup · ~15–30 min</span>
+    <h1>Get your AI operator running</h1>
+    <p class="sub">Install Copilot CLI on your laptop, sign in, and run your first prompt. No coding required.</p>
+  </div>
+
+  <div class="intro-grid">
+    <div class="intro-item">
+      <div class="emoji">⏱️</div>
+      <div class="value">15–30 min</div>
+      <div class="label">Estimated time</div>
+    </div>
+    <div class="intro-item">
+      <div class="emoji">🔧</div>
+      <div class="value">4 tools, 1 login</div>
+      <div class="label">What you'll set up</div>
+    </div>
+    <div class="intro-item">
+      <div class="emoji">💡</div>
+      <div class="value">No coding needed</div>
+      <div class="label">Just follow the steps</div>
+    </div>
+  </div>
+  <p class="reassurance">You'll install a terminal tool, sign in to GitHub, and run your first prompt. Copy-paste commands. That's it.</p>
+
+  <details class="explainer">
+    <summary>Why bother with a CLI at all? Don't I already have M365 Copilot?</summary>
+    <div class="body">
+      <p>Quick analogy: M365 Copilot is the librarian. You ask, it finds, it reads back. CLI Copilot is the contractor. You give it a job, it goes off and does it.</p>
+      <p>M365 Copilot is great at what it sees. Your email, your calendar, your Office files. Ask it about a thread, it summarizes. Ask it to draft a reply, it does. It lives inside the M365 surface and stays there.</p>
+      <p>CLI Copilot is a different shape. It runs on your machine, in your terminal, and it actually does things. Runs commands. Edits files. Calls APIs. Ties tools together.</p>
+      <p>What the CLI gives you that M365 Copilot doesn't:</p>
+      <ol>
+        <li><strong>Reach beyond M365.</strong> Through MCP connectors you can plug in anything that exposes one. GitHub, your filesystem, Notion, Atlassian, your own internal services. M365 Copilot is fixed to what Microsoft ships. The CLI is open.</li>
+        <li><strong>Execute, don't just retrieve.</strong> <em>"Read the three customer-meeting transcripts in this folder, build a one-pager per customer, save them next to the originals."</em> Ask once, it runs the whole chain.</li>
+        <li><strong>Live where your real work happens.</strong> Your files, your folders, your terminal. No tab-switching, no re-uploading.</li>
+      </ol>
+      <p>Set up once. Use it for real work after.</p>
+      <div style="margin-top: 14px; padding: 12px 14px; background: var(--accent-light); border-radius: 8px; font-size: 14px;"><strong>A taste of what's possible:</strong> <em>"Read this RFP. Pull our service capability docs. Build me a draft response with the strongest three offerings up front and a 'further investigation needed' list at the bottom."</em> One prompt. Real work. That's the CLI.</div>
+    </div>
+  </details>
+
+  <div class="step" style="border-left: 4px solid var(--accent); background: var(--accent-light);">
+    <p style="margin: 0; font-size: 15px; line-height: 1.6;">
+      <strong>Already comfortable with CLI tools?</strong> Skim the steps and jump to <a href="#verify" style="color: var(--accent);">Step 4: Verify everything</a>. If all three checks pass, you're done.<br><br>
+      <strong>Never opened a terminal before?</strong> That's exactly who this is for. Every step explains what's happening and why. Follow along and copy-paste the commands.
+    </p>
+  </div>
+
+  <div class="progress" aria-hidden="true">
+    <div class="progress-dot active"></div>
+    <div class="progress-dot active"></div>
+    <div class="progress-dot active"></div>
+    <div class="progress-dot active"></div>
+    <div class="progress-dot active"></div>
+  </div>
+
+  <!-- Step 0 -->
+  <div class="step" id="step-0">
+    <span class="step-number">Step 0</span>
+    <h2>Get a GitHub account with Copilot</h2>
+    <p>Copilot CLI runs on GitHub. You need a personal GitHub account with Copilot turned on. Both are free.</p>
+
+    <h3>If you don't have a GitHub account yet</h3>
+    <p>Sign up at <a class="inline" href="https://github.com/signup" target="_blank">github.com/signup</a>. Use any email you like. Pick a short username you can remember.</p>
+
+    <h3>Turn on GitHub Copilot Free</h3>
+    <p>Once signed in, open <a class="inline" href="https://github.com/settings/copilot" target="_blank">github.com/settings/copilot</a>. If you've never used Copilot before, GitHub will offer to start your <strong>Copilot Free</strong> plan. Accept it.</p>
+
+    <div class="tip">
+      <strong>💡 Copilot Free is enough for this whole course.</strong> It includes Copilot CLI, MCP connectors, and a generous monthly request limit. Pro / Pro+ / Business / Enterprise also work if your company gives you one of those. Don't pay for anything to follow along here.
+    </div>
+
+    <details class="explainer">
+      <summary>What are all those Copilot plan names? Which one do I have?</summary>
+      <div class="body">
+        <p>GitHub currently offers five Copilot plans: <strong>Free</strong>, <strong>Pro</strong>, <strong>Pro+</strong>, <strong>Business</strong>, and <strong>Enterprise</strong>. The old "Copilot Individual" plan is gone.</p>
+        <p>For this course, Free is everything you need. The other plans add more requests per month, more model options, and admin features for teams.</p>
+        <p>If your employer already gives you Copilot Business or Enterprise on a different GitHub account, you can use that account instead. Just sign in with it in the steps below.</p>
+      </div>
+    </details>
+  </div>
+
+  <!-- Step 1 -->
+  <div class="step" id="step-1">
+    <span class="step-number">Step 1</span>
+    <h2>Install command-line tools</h2>
+
+    <h3>First: open PowerShell</h3>
+    <p>PowerShell is a text-based tool for talking to your computer. Like File Explorer, but you type commands instead of clicking. It comes pre-installed on Windows.</p>
+    <p>Press the <strong>Windows key</strong>, type <strong>PowerShell</strong>, and open the one that says <strong>"PowerShell 7"</strong> or <strong>"pwsh"</strong>. Avoid the one called "Windows PowerShell". It's an older version.</p>
+
+    <div class="warn"><strong>⚠️ Don't see PowerShell 7?</strong> Open "Windows PowerShell" instead. It will work for the install commands. We'll upgrade later.</div>
+
+    <details class="explainer">
+      <summary>What's the difference between PowerShell 7 and Windows PowerShell?</summary>
+      <div class="body">
+        <p>Both are command-line tools that come with Windows. <strong>"Windows PowerShell"</strong> is the older version (5.x) that has shipped with the OS for years. <strong>"PowerShell 7"</strong> (sometimes called "pwsh") is the newer cross-platform version Microsoft ships separately.</p>
+        <p>They look almost identical. PowerShell 7 has better tab completion, better error messages, and supports modern command patterns. Either one works for this course. If you have 7, use it.</p>
+      </div>
+    </details>
+
+    <h3>On macOS or Linux?</h3>
+    <p>Use Terminal (macOS) or your distro's terminal (Linux). The commands below use <code>winget</code>, which is Windows-only. The <a class="inline" href="https://docs.github.com/copilot/how-tos/use-copilot-agents/use-copilot-cli/install-copilot-cli" target="_blank">official GitHub install guide</a> covers macOS (Homebrew) and Linux (apt / yum). Everything after install is identical.</p>
+
+    <h3>Then: install four small tools</h3>
+    <p>Copilot CLI doesn't work alone. It calls three other tools behind the scenes. Node.js (its runtime), Git (for source control), and GitHub CLI (for sign-in). None of them have buttons or windows of their own. They sit underneath, ready to be called from your command line.</p>
+    <p><strong>Run these one at a time</strong>, waiting for each to finish before pasting the next. Pasting them all in one go can break. PowerShell handles single-line pastes most reliably. Each takes 30–60 seconds.</p>
+    <pre><code>winget install OpenJS.NodeJS.LTS</code></pre>
+    <pre><code>winget install Git.Git</code></pre>
+    <pre><code>winget install GitHub.cli</code></pre>
+    <pre><code>winget install GitHub.Copilot</code></pre>
+
+    <div class="tip"><strong>💡 Pop-ups are normal.</strong> Windows will ask <em>"Do you want to allow this app to make changes?"</em>. Click <strong>Yes</strong>. Git's installer also opens a wizard with several screens. Click <strong>Next</strong> through all defaults. This is expected.</div>
+
+    <details class="explainer">
+      <summary>What is winget, anyway?</summary>
+      <div class="body">
+        <p>It's Windows' built-in app installer. Like the Microsoft Store, but you control it from PowerShell. Type <code>winget install &lt;tool&gt;</code> and it downloads and installs the official version straight from the publisher.</p>
+        <p>It ships pre-installed on Windows 11. Same idea as <code>apt</code> on Ubuntu or <code>brew</code> on macOS if those names mean anything to you.</p>
+      </div>
+    </details>
+
+    <p>When all four are done, <strong>close and reopen PowerShell</strong>. This is important. The new commands won't be available until you do.</p>
+
+    <h3>Verify they all worked</h3>
+    <p>In the fresh PowerShell window, run these <strong>one at a time</strong>:</p>
+    <pre><code>node --version</code></pre>
+    <pre><code>git --version</code></pre>
+    <pre><code>gh --version</code></pre>
+    <pre><code>copilot --version</code></pre>
+
+    <div class="tip"><strong>✅ Pass:</strong> Each command prints a version number. The exact numbers don't matter. What matters is that none of them say <em>"not recognized"</em>.</div>
+
+    <div class="warn"><strong>⚠️ <code>winget</code> not found?</strong> Open the Microsoft Store, search for "App Installer", and install it. Then restart PowerShell and try again.</div>
+    <div class="warn"><strong>⚠️ Something says "not recognized" after the verify step?</strong> Make sure you closed and reopened PowerShell. If still missing, restart your computer and try the verify commands again.</div>
+
+    <div class="tip"><strong>💡 Can't install at all?</strong> Some corporate laptops block <code>winget</code>. You can run Copilot CLI in your browser via <a class="inline" href="https://github.com/features/codespaces" target="_blank">GitHub Codespaces</a> instead. Free tier includes 60 hours a month. Open a codespace from any repo and run <code>copilot</code> there. Everything else in this course works the same way.</div>
+  </div>
+
+  <!-- Step 2 -->
+  <div class="step" id="step-2">
+    <span class="step-number">Step 2</span>
+    <h2>Sign in</h2>
+    <p>You'll sign in to two things: <strong>GitHub CLI</strong> (so commands like <code>gh</code> work), and <strong>Copilot CLI</strong> (so it knows it's you).</p>
+
+    <h3>2a. GitHub CLI</h3>
+    <p>Start the login flow:</p>
+    <pre><code>gh auth login</code></pre>
+    <p>It asks four questions, one at a time. Use the arrow keys to highlight the right answer, then press Enter:</p>
+    <ul>
+      <li><em>What account do you want to log into?</em> → <strong>GitHub.com</strong></li>
+      <li><em>What is your preferred protocol for Git operations?</em> → <strong>HTTPS</strong></li>
+      <li><em>Authenticate Git with your GitHub credentials?</em> → <strong>Yes</strong></li>
+      <li><em>How would you like to authenticate GitHub CLI?</em> → <strong>Login with a web browser</strong></li>
+    </ul>
+    <p>It shows a one-time code and offers to open a browser. Press Enter. Your browser opens. If GitHub asks you to sign in first, do so. Then paste the code and authorize.</p>
+    <p>When the page says <em>"Congratulations, you're all set,"</em> come back to PowerShell.</p>
+
+    <div class="warn"><strong>⚠️ Don't re-run <code>gh auth login</code> if you hit a snag.</strong> Every new run invalidates all previous codes. If the browser is stuck, just go to <a class="inline" href="https://github.com/login/device" target="_blank">github.com/login/device</a> and paste the code from your terminal. The existing one is still valid. Only the <strong>most recent</strong> code in your terminal works. Older ones are dead.</div>
+
+    <div class="tip"><strong>✅ Pass:</strong> PowerShell prints <code>✓ Logged in as &lt;your-username&gt;</code>. Confirm anytime with <code>gh auth status</code>.</div>
+
+    <details class="explainer">
+      <summary>Why HTTPS and not SSH?</summary>
+      <div class="body">
+        <p>Both are ways for your computer to talk securely to GitHub. <strong>HTTPS</strong> uses your username and the token you just authenticated with. Simple, works through corporate proxies, no setup needed.</p>
+        <p><strong>SSH</strong> uses cryptographic keys you'd have to generate and add to your GitHub account first. More powerful, more steps. For this course, HTTPS is the easy answer. You can switch later if you ever want to.</p>
+      </div>
+    </details>
+
+    <h3>2b. Copilot CLI</h3>
+    <p>Run this in PowerShell to launch Copilot CLI:</p>
+    <pre><code>copilot</code></pre>
+    <p>You'll see an animated banner. You're now <strong>inside Copilot CLI</strong>, not PowerShell. The next two prompts run here:</p>
+    <pre data-shell="copilot"><code>/login</code></pre>
+    <p>A browser window opens. Sign in with your GitHub account. Once logged in, test with a simple prompt:</p>
+    <pre data-shell="copilot"><code>What day is it today?</code></pre>
+
+    <div class="tip"><strong>✅ Pass:</strong> You get an answer back.</div>
+
+    <p>Then leave Copilot CLI back to PowerShell:</p>
+    <pre data-shell="copilot"><code>/exit</code></pre>
+
+    <div class="warn"><strong>⚠️ Login fails or times out?</strong> Check that your Copilot plan is active at <a class="inline" href="https://github.com/settings/copilot" target="_blank">github.com/settings/copilot</a>. If you're behind a corporate proxy, that can also block the browser flow. Try on a personal network.</div>
+
+    <details class="explainer">
+      <summary>Why am I logging in twice? gh AND copilot?</summary>
+      <div class="body">
+        <p>They're two separate tools that both need to know who you are. <strong>GitHub CLI</strong> (<code>gh</code>) talks to GitHub from PowerShell. Switching accounts, cloning repos, opening pull requests. <strong>Copilot CLI</strong> (<code>copilot</code>) is the AI assistant.</p>
+        <p>Same GitHub account, but each tool keeps its own login session. Once both are signed in, the rest of the course works without any extra account juggling.</p>
+      </div>
+    </details>
+  </div>
+
+  <!-- Step 3 -->
+  <div class="step" id="step-3">
+    <span class="step-number">Step 3</span>
+    <h2>Connect a tool (optional)</h2>
+    <p>MCP servers are connectors that let Copilot CLI talk to other systems. Like Power Automate connectors, but for the terminal. The GitHub MCP is built in, so you can already ask Copilot about your repos, issues, and pull requests with no setup.</p>
+    <p>This step is optional for the course. If you want to add one connector to get a feel for it, the <strong>filesystem MCP</strong> is the safest first pick. It lets Copilot read and write files in folders you choose. No external accounts, no tenant approval.</p>
+
+    <details class="explainer">
+      <summary>What is MCP, in plain language?</summary>
+      <div class="body">
+        <p>MCP stands for "Model Context Protocol". Ignore the name. Think of it as <strong>adapters that plug Copilot CLI into your other tools</strong>. Each adapter lets Copilot read and act on a specific system. GitHub for repos. Filesystem for local files. Outlook for email. And many more.</p>
+        <p>Without adapters, Copilot is a smart chatbot that can only talk. With adapters, it can actually look up your projects, read your files, send emails. Same Copilot. With hands.</p>
+      </div>
+    </details>
+
+    <h3>3a. Add the filesystem MCP (recommended)</h3>
+    <p>Launch Copilot CLI:</p>
+    <pre><code>copilot</code></pre>
+    <p>Inside Copilot CLI, paste this prompt:</p>
+    <pre data-shell="copilot"><code>Add the official filesystem MCP server to my Copilot CLI config so it can read files in my home directory. Use the standard `@modelcontextprotocol/server-filesystem` package via npx. Allowed root: my home folder.
+
+When you're done, tell me to run `/restart` so the new tool registers.</code></pre>
+
+    <p>When Copilot tells you the install is done, restart so the new tool registers:</p>
+    <pre data-shell="copilot"><code>/restart</code></pre>
+
+    <div class="tip"><strong>✅ Pass:</strong> No errors during install. After restart, <code>/mcp</code> lists <strong>filesystem</strong> among your active servers.</div>
+
+    <h3>3b. M365 connector (optional, for Microsoft partner work)</h3>
+    <p>If you work for a Microsoft partner that uses M365 and you want Copilot to reach your Outlook, Teams, Calendar, and SharePoint, you can install the <strong>M365 MCP server</strong>. Lesson 4 of the course covers this in detail.</p>
+
+    <div class="warn"><strong>⚠️ Tenant approval may be required.</strong> Some Microsoft 365 tenants block third-party app consent by default. The first install attempt may show a "needs admin approval" message. If that happens, ask your IT admin to approve the app, or skip M365 and rely on the filesystem MCP for now.</div>
+
+    <p>If you want to try it now, launch Copilot CLI and paste:</p>
+    <pre data-shell="copilot"><code>Install the M365 MCP server for me so I can access Outlook, Teams, Calendar, and SharePoint from Copilot CLI. Use the Microsoft-published package. Walk me through any consent prompts that appear.
+
+If the install fails or needs admin approval, stop and tell me what happened. Don't try alternate paths or hand-edit config.</code></pre>
+
+    <div class="tip"><strong>💡 Not a Microsoft partner?</strong> Skip 3b. The course works fine on filesystem + GitHub MCP alone. M365 is the example we use, but the patterns transfer to any MCP you have access to.</div>
+  </div>
+
+  <!-- Step 4 -->
+  <div class="step" id="verify">
+    <span class="step-number">Step 4</span>
+    <h2>Verify everything</h2>
+    <p>Three checks. All should pass before you start the course.</p>
+
+    <ul class="checklist">
+      <li>
+        <span class="check-icon">1</span>
+        <div class="check-detail">
+          <strong>Copilot CLI is installed</strong>
+          <pre><code>copilot --version</code></pre>
+          <span class="check-pass">✅ You see a version number</span>
+        </div>
+      </li>
+      <li>
+        <span class="check-icon">2</span>
+        <div class="check-detail">
+          <strong>You can launch it and chat</strong>
+          <p style="margin: 4px 0 0; font-size: 13px; color: var(--fg-muted);">Launch Copilot:</p>
+          <pre><code>copilot</code></pre>
+          <p style="margin: 4px 0 0; font-size: 13px; color: var(--fg-muted);">Inside, type:</p>
+          <pre data-shell="copilot"><code>Hello, what model are you using?</code></pre>
+          <span class="check-pass">✅ You get a response from the AI</span>
+        </div>
+      </li>
+      <li>
+        <span class="check-icon">3</span>
+        <div class="check-detail">
+          <strong>MCP servers are loaded (if you added any)</strong>
+          <p style="margin: 4px 0 0; font-size: 13px; color: var(--fg-muted);">Inside Copilot CLI, type:</p>
+          <pre data-shell="copilot"><code>/mcp</code></pre>
+          <span class="check-pass">✅ GitHub MCP appears built in. Filesystem MCP appears if you added it in Step 3a. M365 appears if you added it in Step 3b.</span>
+        </div>
+      </li>
+    </ul>
+
+    <div class="warn"><strong>⚠️ Something not working?</strong> Check the <a class="inline" href="reference/troubleshooting.md">troubleshooting reference</a> first. Most issues are setup issues and have a known fix. If you're stuck, open an issue at <a class="inline" href="https://github.com/JW-Sthlm/ai-operator-intro/issues" target="_blank">github.com/JW-Sthlm/ai-operator-intro/issues</a>.</div>
+  </div>
+
+  <div class="success">
+    <div class="emoji">🎉</div>
+    <h2>You're ready</h2>
+    <p>Setup is done. Here's what to do next:</p>
+    <ul>
+      <li>📘 Start <a class="inline" href="course/">the course</a></li>
+      <li>📋 Or jump into an <a class="inline" href="exercises/exercise-01-build-your-briefing.md">exercise</a></li>
+      <li>🧠 Curiosity required. Coding skills are not.</li>
+    </ul>
+  </div>
+
+  <div class="step" id="next-steps">
+    <span class="step-number">What's next</span>
+    <h2>Pick one (or all)</h2>
+    <p>Setup is the runway, not the flight. The fastest way to make Copilot CLI stick is to actually use it.</p>
+
+    <ul class="next-steps">
+      <li>
+        <strong>📘 Run the course</strong>
+        <p>Four self-paced lessons in <a class="inline" href="course/">the course</a>. ~70 minutes. Why CLI, first conversations, files as context, MCP power-ups.</p>
+      </li>
+      <li>
+        <strong>🧪 Try the exercises</strong>
+        <p>Hands-on practice in <a class="inline" href="exercises/">the exercises folder</a>. Customer briefing, deal shaping, your-own-scenario. Use your real work.</p>
+      </li>
+      <li>
+        <strong>💼 Use it on something real today</strong>
+        <p>Open a folder you actually work in. Ask Copilot to summarize the most recent file, draft a follow-up, or build you a one-pager. Real tasks beat practice every time.</p>
+      </li>
+      <li>
+        <strong>📚 Go deeper</strong>
+        <p>GitHub's official <a class="inline" href="https://gh.io/copilot-cli-course" target="_blank">Copilot CLI for Beginners</a> is a longer, more developer-oriented deep dive. Optional but excellent.</p>
+      </li>
+    </ul>
+  </div>
+
+  <div class="step" id="troubleshooting">
+    <span class="step-number">Troubleshooting</span>
+    <h2>Common issues</h2>
+    <table>
+      <tr><th>Problem</th><th>Fix</th></tr>
+      <tr><td><code>winget</code> not found</td><td>Install "App Installer" from the Microsoft Store. Or use Codespaces (Step 1, "Can't install at all").</td></tr>
+      <tr><td><code>copilot</code> not found after install</td><td>Close and reopen PowerShell. Still missing? Restart your computer.</td></tr>
+      <tr><td><code>/login</code> fails or times out</td><td>Confirm your Copilot plan at <a class="inline" href="https://github.com/settings/copilot" target="_blank">github.com/settings/copilot</a>. Corporate proxies sometimes block the device-code flow. Try on a personal network.</td></tr>
+      <tr><td><code>/login/device/failure?reason=not_found</code></td><td>You pasted a stale code. Each <code>gh auth login</code> invalidates older codes. Use the <strong>most recent</strong> code from your terminal at <a class="inline" href="https://github.com/login/device" target="_blank">github.com/login/device</a>. Don't re-run <code>gh auth login</code>.</td></tr>
+      <tr><td>MCP servers missing in <code>/mcp</code></td><td>Did you run <code>/restart</code> after the install? If yes, check <code>mcp-config.json</code> in <code>~\.copilot\</code> is valid JSON.</td></tr>
+      <tr><td>M365 MCP install says "needs admin approval"</td><td>Your M365 tenant blocks third-party app consent. Ask your IT admin to approve the app, or skip M365 for now.</td></tr>
+    </table>
+  </div>
+
+  <div class="footer">
+    <a href="index.html">← Back to the AI Operator home</a>
+  </div>
+
+  <div class="disclaimer">
+    Community and partner enablement material. Not an official Microsoft or GitHub product. Adapted from <a class="inline" href="https://gh.io/copilot-cli-course" target="_blank">GitHub's Copilot CLI for Beginners</a> (MIT).
+  </div>
+
+</div>
+<script>
+(function() {
+  var SHELL_LABELS = { 'ps': 'PowerShell', 'copilot': 'Copilot CLI' };
+  document.querySelectorAll('pre').forEach(function(pre) {
+    if (pre.closest('.cmd-wrap')) return;
+    var shell = pre.getAttribute('data-shell') || 'ps';
+    var label = SHELL_LABELS[shell] || 'PowerShell';
+    var wrap = document.createElement('div');
+    wrap.className = 'cmd-wrap shell-' + shell;
+    var header = document.createElement('div');
+    header.className = 'cmd-header';
+    var labelSpan = document.createElement('span');
+    labelSpan.className = 'cmd-label';
+    labelSpan.textContent = label;
+    var btn = document.createElement('button');
+    btn.className = 'cmd-copy';
+    btn.type = 'button';
+    btn.textContent = 'Copy';
+    btn.setAttribute('aria-label', 'Copy command');
+    btn.addEventListener('click', function() {
+      var code = pre.querySelector('code');
+      var text = code ? code.textContent : pre.textContent;
+      var done = function() {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(function() { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1400);
+      };
+      var fail = function() {
+        btn.textContent = 'Failed';
+        setTimeout(function() { btn.textContent = 'Copy'; }, 1400);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(fail);
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); done(); } catch (e) { fail(); }
+        document.body.removeChild(ta);
+      }
+    });
+    header.appendChild(labelSpan);
+    header.appendChild(btn);
+    pre.parentNode.insertBefore(wrap, pre);
+    wrap.appendChild(header);
+    wrap.appendChild(pre);
+  });
+})();
+</script>
+</body>
+</html>
