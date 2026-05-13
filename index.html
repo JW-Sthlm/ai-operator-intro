@@ -19,6 +19,9 @@
   .tag{display:inline-block;background:rgba(137,87,229,.1);color:var(--purple);font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;padding:5px 10px;border-radius:4px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px;border:1px solid rgba(137,87,229,.3);}
   .section-label{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin:32px 0 12px;font-weight:600;}
   .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:0 0 12px;}
+  .cards-footnote{font-size:13px;color:var(--muted);margin:4px 0 12px;}
+  .cards-footnote a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;}
+  .cards-footnote a:hover{color:#fff;}
   @media(max-width:640px){.cards{grid-template-columns:1fr;}}
   .card{display:block;background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:22px 24px;text-decoration:none;color:inherit;transition:border-color .2s,transform .2s;}
   .card:hover{border-color:var(--purple);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.3);}
@@ -146,7 +149,7 @@
     <a class="card" href="setup.html">
       <span class="icon">⚙️</span>
       <h2>Setup guide</h2>
-      <p>~15–30 min depending on what you already have installed. Personal GitHub, Copilot Free, Node, Git, CLI. One walkthrough. <strong>Can't install?</strong> <a href="setup-codespaces.html" onclick="event.stopPropagation()">Run it in a browser →</a></p>
+      <p>~15–30 min depending on what you already have installed. Personal GitHub, Copilot Free, Node, Git, CLI. One walkthrough.</p>
       <span class="card-tag green">step 1</span>
     </a>
     <a class="card" href="course/">
@@ -156,6 +159,7 @@
       <span class="card-tag pink">step 2</span>
     </a>
   </div>
+  <p class="cards-footnote">Can't install locally? <a href="setup-codespaces.html">Run Copilot CLI in your browser →</a></p>
 
   <div class="section-label">Try it on your work</div>
   <div class="cards">
