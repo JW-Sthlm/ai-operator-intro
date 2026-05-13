@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Codespaces setup · The AI Operator Intro</title>
+<meta name="description" content="Run GitHub Copilot CLI for the AI Operator Intro course in a browser tab using GitHub Codespaces.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --fg: #0b0b0d;
+    --fg-muted: #5a5a66;
+    --bg: #fafafa;
+    --card: #fff;
+    --accent: #2D6E6D;
+    --accent-light: #EEF4F4;
+    --border: #e5e7eb;
+    --warn: #c4700a;
+    --warn-bg: #FFF7ED;
+    --warn-border: #FDDCAB;
+    --success: #16803C;
+    --success-bg: #F0FDF4;
+    --success-border: #BBF7D0;
+    --code-bg: #1e1e2e;
+    --code-fg: #cdd6f4;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--fg); line-height: 1.6; }
+
+  .wrap { max-width: 760px; margin: 0 auto; padding: 48px 24px 96px; }
+
+  .header { margin-bottom: 48px; }
+  .tag { display: inline-block; background: var(--accent-light); color: var(--accent); font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px; letter-spacing: .04em; text-transform: uppercase; margin-bottom: 16px; }
+  h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 36px; font-weight: 800; letter-spacing: -.02em; margin: 0 0 6px; }
+  .sub { color: var(--fg-muted); font-size: 17px; margin: 0 0 24px; }
+
+  .step { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 32px; margin-bottom: 20px; position: relative; }
+  .step-number { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 13px; color: var(--accent); background: var(--accent-light); display: inline-block; padding: 4px 12px; border-radius: 999px; margin-bottom: 12px; letter-spacing: .04em; text-transform: uppercase; }
+  .step h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 22px; font-weight: 700; margin: 0 0 12px; }
+  .step h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 700; margin: 20px 0 8px; }
+  .step p, .step li { font-size: 15px; }
+  .step ul, .step ol { padding-left: 20px; }
+  .step li { margin-bottom: 6px; }
+
+  pre { background: var(--code-bg); color: var(--code-fg); border-radius: 10px; padding: 16px 20px; overflow-x: auto; font-size: 14px; line-height: 1.5; margin: 12px 0; }
+  code { font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace; font-size: 14px; }
+  p code, li code { background: #f0f0f5; padding: 2px 6px; border-radius: 4px; font-size: 13px; color: var(--fg); }
+
+  .cmd-wrap { margin: 14px 0; }
+  .cmd-wrap pre { margin: 0; border-top-left-radius: 0; border-top-right-radius: 0; }
+  .cmd-header { display: flex; align-items: center; justify-content: space-between; background: #2a2a3e; color: var(--code-fg); padding: 7px 14px; border-radius: 10px 10px 0 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-family: 'Inter', sans-serif; gap: 10px; }
+  .cmd-dots { display: inline-flex; gap: 5px; align-items: center; margin-right: 6px; }
+  .cmd-dots .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .cmd-dots .dot.red { background: #ff5f56; }
+  .cmd-dots .dot.yellow { background: #ffbd2e; }
+  .cmd-dots .dot.green { background: #27c93f; }
+  .cmd-label { font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; font-size: 11px; display: flex; align-items: center; gap: 6px; flex: 1; }
+  .cmd-label::before { font-family: 'Cascadia Code', monospace; font-size: 12px; }
+  .shell-ps .cmd-label { opacity: 0.78; }
+  .shell-ps .cmd-label::before { content: ">_"; color: #5DA9D9; opacity: 1; }
+  .shell-copilot .cmd-header { background: linear-gradient(180deg, #3a2e5c 0%, #2d2444 100%); border-bottom-color: rgba(199, 168, 255, 0.22); }
+  .shell-copilot .cmd-label { color: #D9C2FF; opacity: 1; }
+  .shell-copilot .cmd-label::before { content: "✦"; color: #C7A8FF; font-size: 14px; }
+  .cmd-copy { background: transparent; color: inherit; border: 1px solid rgba(255,255,255,0.18); border-radius: 6px; padding: 3px 11px; font-size: 11px; font-weight: 500; cursor: pointer; transition: background .12s, border-color .12s; font-family: 'Inter', sans-serif; }
+  .cmd-copy:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.32); }
+  .cmd-copy.copied { background: var(--success); color: #fff; border-color: var(--success); }
+
+  .tip, .warn { border-radius: 10px; padding: 14px 18px; margin: 16px 0; font-size: 14px; line-height: 1.5; }
+  .tip { background: var(--accent-light); border-left: 4px solid var(--accent); }
+  .tip strong { color: var(--accent); }
+  .warn { background: var(--warn-bg); border-left: 4px solid var(--warn); }
+  .warn strong { color: var(--warn); }
+
+  .cta { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: var(--accent); color: #fff; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; text-decoration: none; border-radius: 999px; padding: 14px 22px; margin: 10px 0 14px; box-shadow: 0 8px 22px rgba(45,110,109,0.18); transition: transform .15s, box-shadow .15s; }
+  .cta:hover { transform: translateY(-1px); box-shadow: 0 12px 28px rgba(45,110,109,0.24); }
+  .checklist { list-style: none; padding: 0; margin: 14px 0 0; }
+  .checklist li { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid var(--border); }
+  .checklist li:last-child { border-bottom: 0; }
+  .check-icon { flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%; background: var(--accent-light); color: var(--accent); display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; }
+  .nav-links { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; padding-top: 24px; }
+  .nav-links a { display: inline-block; color: var(--accent); font-weight: 600; font-size: 15px; text-decoration: none; padding: 10px 24px; border: 2px solid var(--accent); border-radius: 999px; transition: background .15s, color .15s; }
+  .nav-links a:hover { background: var(--accent); color: #fff; }
+
+  a.inline { color: var(--accent); text-decoration: none; }
+  a.inline:hover { text-decoration: underline; }
+
+  .disclaimer { font-size: 12px; color: var(--fg-muted); background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 14px 18px; margin-top: 24px; line-height: 1.5; text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <span class="tag">Fallback · ~10 min</span>
+    <h1>Run Copilot CLI in your browser</h1>
+    <p class="sub">A clean Codespaces path for the days when your laptop says no.</p>
+  </div>
+
+  <div class="step" style="border-left: 4px solid var(--accent); background: var(--accent-light);">
+    <p style="margin: 0; font-size: 15px; line-height: 1.6;">When your laptop won't let you install Node, npm, or Copilot CLI, this gets you the full experience in a browser tab. No IT involvement. No installer dialogues. Free on a personal GitHub account.</p>
+  </div>
+
+  <div class="step" id="when-to-use">
+    <span class="step-number">When to use this</span>
+    <h2>Use the browser path when setup gets political</h2>
+    <ul class="checklist">
+      <li><span class="check-icon">1</span><span>One of the prereq steps in <a class="inline" href="setup.html">setup.html</a> failed.</span></li>
+      <li><span class="check-icon">2</span><span>Your corporate firewall blocks generic HTTPS or npm registries.</span></li>
+      <li><span class="check-icon">3</span><span>You want a clean sandbox separate from your work environment.</span></li>
+    </ul>
+  </div>
+
+  <div class="step" id="cost">
+    <span class="step-number">Cost</span>
+    <h2>The cost story</h2>
+    <p>Codespaces is free on a personal GitHub account, 60 hours per month on the smallest machine. The full course uses well under 2 hours of compute. No credit card. No conversion trap.</p>
+  </div>
+
+  <div class="step" id="step-1">
+    <span class="step-number">Step 1</span>
+    <h2>Sign in with a personal GitHub account</h2>
+    <p>Open <a class="inline" href="https://github.com" target="_blank" rel="noopener">github.com</a> and sign in with a personal account, not your work account. Two reasons:</p>
+    <ol>
+      <li>Codespaces on a work account often inherits org policies that block exactly what we are about to do.</li>
+      <li>The Copilot CLI device-code flow inside the Codespace will sign in against this same account. Keeping it personal avoids any work-tenant friction.</li>
+    </ol>
+    <div class="tip"><strong>💡 No personal account yet?</strong> Use <a class="inline" href="setup.html#step-0">setup.html Step 0</a>, or create one in 2 minutes at <a class="inline" href="https://github.com/signup" target="_blank" rel="noopener">github.com/signup</a>. Then turn on Copilot Free at <a class="inline" href="https://github.com/settings/copilot" target="_blank" rel="noopener">github.com/settings/copilot</a>.</div>
+  </div>
+
+  <div class="step" id="step-2">
+    <span class="step-number">Step 2</span>
+    <h2>Open the AI Operator Intro repo as a Codespace</h2>
+    <p>Click this button:</p>
+    <a class="cta" href="https://codespaces.new/JW-Sthlm/ai-operator-intro?quickstart=1" target="_blank" rel="noopener">Open in a Codespace →</a>
+    <p>GitHub shows a <em>Create codespace</em> page. You will see the repo name <strong>JW-Sthlm/ai-operator-intro</strong>, a green <strong>Create new codespace</strong> button, and a few defaults. Leave them as they are.</p>
+    <p>Click <strong>Create new codespace</strong>. About 90 seconds to boot. The devcontainer installs Node 20 and Copilot CLI for you while you wait.</p>
+    <div class="tip"><strong>✅ Your Codespace is isolated.</strong> It runs on GitHub's infrastructure, in a private container only you can see. You cannot accidentally affect the source material. Edits live only in your Codespace. Nothing pushes anywhere. The Codespace stops on idle and you can delete it when you are done.</div>
+  </div>
+
+  <div class="step" id="step-3">
+    <span class="step-number">Step 3</span>
+    <h2>Open the terminal</h2>
+    <p>When the Codespace finishes booting, you land in VS Code in the browser. Open the integrated terminal:</p>
+    <ul>
+      <li>Menu: <strong>Terminal → New Terminal</strong></li>
+      <li>Keyboard: <code>Ctrl+`</code></li>
+    </ul>
+    <p>The terminal welcome banner should say <strong>You are on a custom image defined in your devcontainer.json file</strong>. That confirms the devcontainer loaded.</p>
+    <div class="warn"><strong>⚠️ Default image?</strong> If the banner says <em>Welcome to Codespaces! You are on our default image</em>, open the Command Palette and run <strong>Codespaces: Rebuild Container</strong>. Or run the manual fallback below.</div>
+    <pre><code>npm install -g @github/copilot</code></pre>
+    <p>Verify Copilot CLI is ready:</p>
+    <pre><code>copilot --version</code></pre>
+    <div class="tip"><strong>✅ Pass:</strong> You should see <code>1.0.46</code> or newer. If you see an old version like <code>1.0.1x</code> or <code>1.0.3</code>, the devcontainer did not load. Rebuild the container and check again.</div>
+  </div>
+
+  <div class="step" id="step-3-5">
+    <span class="step-number">Step 3.5</span>
+    <h2>Make the Codespace feel like a terminal</h2>
+    <p>VS Code in the browser opens with the Explorer, an editor, a Copilot Chat panel, and the terminal all visible. Useful later. Overwhelming now.</p>
+    <p>Three quick moves get you to the right layout.</p>
+
+    <h3>1. Close the Copilot Chat panel on the right</h3>
+    <p>Look at the top-right of the screen. You will see a panel labelled <strong>CHAT</strong> with <em>Build with Agent</em> or <em>Describe what to build</em>. Click the <strong>✕</strong> in that panel's top-right corner. Shortcut: <code>Ctrl+Alt+B</code>.</p>
+    <p>Why close it: Copilot Chat is a different product from Copilot CLI. Different runtime, different MCP config, different commands. Having both visible makes it unclear which one you are talking to. Today's workshop happens in the terminal. Chat can wait.</p>
+
+    <h3>2. Close the README preview tab (optional)</h3>
+    <p>Codespaces auto-opens <code>README.md</code> in a preview tab. You can keep it or close it. Click the <strong>×</strong> on the tab if you want a quieter screen.</p>
+
+    <h3>3. Maximize the terminal panel</h3>
+    <p>Click the maximize icon in the terminal panel header, top-right of the panel. It looks like a square outline. Same effect via <code>Ctrl+Shift+P</code>, then <strong>Toggle Maximized Panel</strong>.</p>
+
+    <pre><code> ┌─────────────┬───────────────────────────────────────┐
+ │ EXPLORER    │   Editor area                         │
+ │             │   (file previews appear here when     │
+ │ README.md   │    you click a file in Explorer)      │
+ │ course/     │                                       │
+ │ ...         │                                       │
+ │             ├───────────────────────────────────────┤
+ │             │   TERMINAL                            │
+ │             │   $ copilot --allow-all               │
+ │             │   &gt;                                   │
+ │             │   ▶  YOU WORK HERE  ◀                 │
+ └─────────────┴───────────────────────────────────────┘</code></pre>
+
+    <div class="tip"><strong>💡 Bonus:</strong> When Copilot writes a <code>.md</code> file later, click it in the Explorer to preview it. Markdown renders nicely in the editor area. Click back into the terminal to keep working.</div>
+  </div>
+
+  <div class="step" id="step-4">
+    <span class="step-number">Step 4</span>
+    <h2>Sign in to Copilot CLI</h2>
+    <p>Run Copilot CLI:</p>
+    <pre><code>copilot</code></pre>
+    <p>Copilot shows a device code and asks you to visit <a class="inline" href="https://github.com/login/device" target="_blank" rel="noopener">github.com/login/device</a>. Open the link, paste the code, and approve. Use the <strong>personal</strong> account from Step 1.</p>
+    <p>Come back to the Codespace terminal. When you see the <code>&gt;</code> prompt, leave Copilot CLI for now:</p>
+    <pre data-shell="copilot"><code>/exit</code></pre>
+  </div>
+
+  <div class="step" id="step-5">
+    <span class="step-number">Step 5</span>
+    <h2>Start Copilot in yolo mode and have your first conversation</h2>
+    <p>In the Codespace terminal, run:</p>
+    <pre><code>copilot --allow-all</code></pre>
+    <p><code>--allow-all</code> lets Copilot run shell commands, read and write files, and fetch URLs without asking each time. Safe here, because the Codespace is a sandbox.</p>
+    <p>At the <code>&gt;</code> prompt, try this:</p>
+    <pre data-shell="copilot"><code>What is GitHub Copilot CLI good for?</code></pre>
+    <p>Then try a real operator prompt:</p>
+    <pre data-shell="copilot"><code>Help me draft a one-paragraph intro email to a new Microsoft partner contact, casual tone.</code></pre>
+    <div class="tip"><strong>✅ That is it.</strong> You're running an AI operator from a browser tab.</div>
+  </div>
+
+  <div class="step" id="step-6">
+    <span class="step-number">Step 6</span>
+    <h2>Continue with the course</h2>
+    <p>Now jump to <a class="inline" href="course/">the course</a> for the four short lessons. If you want to build something immediately, start with <a class="inline" href="exercises/exercise-01-build-your-briefing.html">Exercise 1: Customer briefing</a>.</p>
+  </div>
+
+  <div class="step" id="cleanup">
+    <span class="step-number">When you're done</span>
+    <h2>Stop or delete the Codespace</h2>
+    <p>The Codespace stops automatically after 30 minutes of inactivity. To clean up explicitly, visit <a class="inline" href="https://github.com/codespaces" target="_blank" rel="noopener">github.com/codespaces</a>, find your codespace, click <strong>...</strong>, then <strong>Delete</strong>. That frees the storage quota too.</p>
+  </div>
+
+  <div class="step" id="troubleshooting">
+    <span class="step-number">FAQ</span>
+    <h2>Small fixes</h2>
+    <h3>Codespace won't create</h3>
+    <p>Check that you are signed in with a personal GitHub account. Work accounts often inherit org policies that block Codespaces.</p>
+    <h3>Old Copilot CLI version</h3>
+    <p>Rebuild the container: <code>Ctrl+Shift+P</code>, then <strong>Codespaces: Rebuild Container</strong>.</p>
+    <h3>Copilot CLI did not install at all</h3>
+    <p>Run the manual install command in the terminal:</p>
+    <pre><code>npm install -g @github/copilot</code></pre>
+  </div>
+
+  <div class="nav-links">
+    <a href="setup.html">← Back to setup</a>
+    <a href="index.html">Landing →</a>
+  </div>
+
+  <div class="disclaimer">
+    Community and partner enablement material. Not an official Microsoft or GitHub product. Adapted from <a class="inline" href="https://gh.io/copilot-cli-course" target="_blank">GitHub's Copilot CLI for Beginners</a> (MIT).
+  </div>
+
+</div>
+<script>
+(function() {
+  var SHELL_LABELS = { 'ps': 'PowerShell', 'copilot': 'Copilot CLI' };
+  document.querySelectorAll('pre').forEach(function(pre) {
+    if (pre.closest('.cmd-wrap')) return;
+    var shell = pre.getAttribute('data-shell') || 'ps';
+    var label = SHELL_LABELS[shell] || 'PowerShell';
+    var wrap = document.createElement('div');
+    wrap.className = 'cmd-wrap shell-' + shell;
+    var header = document.createElement('div');
+    header.className = 'cmd-header';
+    var dots = document.createElement('span');
+    dots.className = 'cmd-dots';
+    dots.innerHTML = '<span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>';
+    var labelSpan = document.createElement('span');
+    labelSpan.className = 'cmd-label';
+    labelSpan.textContent = label;
+    var btn = document.createElement('button');
+    btn.className = 'cmd-copy';
+    btn.type = 'button';
+    btn.textContent = 'Copy';
+    btn.setAttribute('aria-label', 'Copy command');
+    btn.addEventListener('click', function() {
+      var code = pre.querySelector('code');
+      var text = code ? code.textContent : pre.textContent;
+      var done = function() {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(function() { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1400);
+      };
+      var fail = function() {
+        btn.textContent = 'Failed';
+        setTimeout(function() { btn.textContent = 'Copy'; }, 1400);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(fail);
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); done(); } catch (e) { fail(); }
+        document.body.removeChild(ta);
+      }
+    });
+    header.appendChild(dots);
+    header.appendChild(labelSpan);
+    header.appendChild(btn);
+    pre.parentNode.insertBefore(wrap, pre);
+    wrap.appendChild(header);
+    wrap.appendChild(pre);
+  });
+})();
+</script>
+</body>
+</html>

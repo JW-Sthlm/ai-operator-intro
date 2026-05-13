@@ -124,13 +124,13 @@
   .footer a { display: inline-block; color: var(--accent); font-weight: 600; font-size: 15px; text-decoration: none; padding: 10px 24px; border: 2px solid var(--accent); border-radius: 999px; transition: background .15s, color .15s; }
   .footer a:hover { background: var(--accent); color: #fff; }
 
-  details.explainer { margin: 14px 0; border: 1px solid var(--border); border-radius: 10px; background: var(--card); transition: border-color .15s; }
-  details.explainer[open] { border-color: var(--accent); }
-  details.explainer summary { padding: 12px 16px; font-size: 14px; font-weight: 600; color: var(--accent); cursor: pointer; list-style: none; display: flex; align-items: center; gap: 10px; user-select: none; }
+  details.explainer { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; margin: 14px 0; transition: box-shadow .15s; }
+  details.explainer[open] { box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
+  details.explainer summary { cursor: pointer; font-weight: 600; color: var(--accent); list-style: none; position: relative; padding-left: 22px; user-select: none; }
   details.explainer summary::-webkit-details-marker { display: none; }
-  details.explainer summary::before { content: "▶"; font-size: 9px; transition: transform .15s; flex-shrink: 0; }
+  details.explainer summary::before { content: "▸"; position: absolute; left: 0; transition: transform .15s; color: var(--accent); }
   details.explainer[open] summary::before { transform: rotate(90deg); }
-  details.explainer .body { padding: 0 16px 14px; font-size: 14px; line-height: 1.6; color: var(--fg); border-top: 1px solid var(--border); padding-top: 12px; margin-top: 2px; }
+  details.explainer .body { padding: 12px 0 0; font-size: 14px; line-height: 1.6; color: var(--fg); }
   details.explainer .body p { margin: 0 0 8px; }
   details.explainer .body p:last-child { margin-bottom: 0; }
 
@@ -284,7 +284,14 @@
     <div class="warn"><strong>⚠️ <code>winget</code> not found?</strong> Open the Microsoft Store, search for "App Installer", and install it. Then restart PowerShell and try again.</div>
     <div class="warn"><strong>⚠️ Something says "not recognized" after the verify step?</strong> Make sure you closed and reopened PowerShell. If still missing, restart your computer and try the verify commands again.</div>
 
-    <div class="tip"><strong>💡 Can't install at all?</strong> Some corporate laptops block <code>winget</code>. You can run Copilot CLI in your browser via <a class="inline" href="https://github.com/features/codespaces" target="_blank">GitHub Codespaces</a> instead. Free tier includes 60 hours a month. Open a codespace from any repo and run <code>copilot</code> there. Everything else in this course works the same way.</div>
+    <details class="explainer">
+      <summary>Can't install at all? Run it in a browser tab instead.</summary>
+      <div class="body">
+        <p>If <code>winget</code> is blocked, npm registries are firewalled, or you just don't want to install anything on the work machine: skip the local install and run Copilot CLI in your browser via GitHub Codespaces. Free 60 hours a month on a personal account. No credit card. No IT ticket.</p>
+        <p>This site has a dedicated fallback page that walks you through it: <a class="inline" href="setup-codespaces.html">Run Copilot CLI in your browser →</a></p>
+        <p>Everything after Step 1 of this page works the same way once you're in. Skip to Step 2 (Sign in) once your Codespace shows the <code>&gt;</code> prompt.</p>
+      </div>
+    </details>
   </div>
 
   <!-- Step 2 -->
