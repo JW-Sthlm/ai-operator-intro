@@ -42,7 +42,18 @@
   .intro-item .label { font-size: 13px; color: var(--fg-muted); }
   .intro-item .value { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 16px; }
 
-  .reassurance { font-size: 14px; color: var(--fg-muted); text-align: center; margin: 0 0 48px; }
+  .reassurance { font-size: 14px; color: var(--fg-muted); text-align: center; margin: 0 0 32px; }
+
+  .fallback-banner { display: flex; gap: 18px; background: var(--accent-light); border: 1px solid var(--accent); border-left: 4px solid var(--accent); border-radius: 12px; padding: 20px 22px; margin: 0 0 40px; align-items: flex-start; }
+  .fallback-icon { font-size: 28px; line-height: 1; flex-shrink: 0; }
+  .fallback-body { flex: 1; min-width: 0; }
+  .fallback-label { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 11px; font-weight: 700; color: var(--accent); letter-spacing: .08em; text-transform: uppercase; margin: 0 0 4px; }
+  .fallback-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 17px; font-weight: 700; color: var(--fg); margin: 0 0 6px; }
+  .fallback-desc { font-size: 14px; color: var(--fg-muted); margin: 0 0 12px; line-height: 1.55; }
+  .fallback-desc code { background: rgba(45,110,109,.1); color: var(--accent); padding: 1px 6px; border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 12px; }
+  .fallback-cta { display: inline-block; background: var(--accent); color: #fff; font-weight: 600; font-size: 14px; padding: 8px 16px; border-radius: 8px; text-decoration: none; }
+  .fallback-cta:hover { background: #1f5453; }
+  @media (max-width: 520px) { .fallback-banner { flex-direction: column; gap: 8px; } }
 
   .step { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 32px; margin-bottom: 20px; position: relative; }
   .step-number { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 13px; color: var(--accent); background: var(--accent-light); display: inline-block; padding: 4px 12px; border-radius: 999px; margin-bottom: 12px; letter-spacing: .04em; text-transform: uppercase; }
@@ -172,6 +183,16 @@
   </div>
   <p class="reassurance">You'll install a terminal tool, sign in to GitHub, and run your first prompt. Copy-paste commands. That's it.</p>
 
+  <div class="fallback-banner">
+    <div class="fallback-icon">☁️</div>
+    <div class="fallback-body">
+      <p class="fallback-label">Locked-down laptop? Read this first</p>
+      <p class="fallback-title">If your work machine blocks installs, skip everything below and run Copilot CLI in your browser instead.</p>
+      <p class="fallback-desc">If <code>winget</code> is blocked, npm registries are firewalled, or you just don't want to install on a corporate machine, use GitHub Codespaces. Free 60 hours per month on a personal account. No install, no IT ticket, same Copilot CLI.</p>
+      <a class="fallback-cta" href="setup-codespaces.html">Run it in your browser →</a>
+    </div>
+  </div>
+
   <details class="explainer">
     <summary>Why bother with a CLI at all? Don't I already have M365 Copilot?</summary>
     <div class="body">
@@ -287,9 +308,8 @@
     <details class="explainer">
       <summary>Can't install at all? Run it in a browser tab instead.</summary>
       <div class="body">
-        <p>If <code>winget</code> is blocked, npm registries are firewalled, or you just don't want to install anything on the work machine: skip the local install and run Copilot CLI in your browser via GitHub Codespaces. Free 60 hours a month on a personal account. No credit card. No IT ticket.</p>
-        <p>This site has a dedicated fallback page that walks you through it: <a class="inline" href="setup-codespaces.html">Run Copilot CLI in your browser →</a></p>
-        <p>Everything after Step 1 of this page works the same way once you're in. Skip to Step 2 (Sign in) once your Codespace shows the <code>&gt;</code> prompt.</p>
+        <p>If <code>winget</code> is blocked, npm is firewalled, or IT just won't let you install: skip the rest of this page and follow the Codespaces fallback instead.</p>
+        <p><a class="inline" href="setup-codespaces.html">Run Copilot CLI in your browser →</a></p>
       </div>
     </details>
   </div>
