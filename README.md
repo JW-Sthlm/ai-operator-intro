@@ -2,9 +2,9 @@
 
 A public, self-paced **Copilot CLI intro for partner consultants in business-oriented roles.** Account managers, sellers, delivery managers, marketing, business development, engagement managers. Anyone whose day runs on decks, briefings, customer emails, RFPs, and follow-ups.
 
-**Live site:** _coming soon. `https://jw-sthlm.github.io/ai-operator-intro/`_
+**Live site:** **[jw-sthlm.github.io/ai-operator-intro](https://jw-sthlm.github.io/ai-operator-intro/)**
 
-This is the consultant-facing counterpart to the [Frontier Consultancy](https://github.com/JW-Sthlm/frontier-consultancy) initiative, which covers the technical AI-first delivery tracks (CAIP, AIBS, Security). Two doors into the same building. This one is for the business side.
+This is the consultant-facing counterpart to the [Frontier Consultancy](https://aka.ms/frontierconsultancy) initiative, which covers the technical AI-first delivery tracks (CAIP, AIBS, Security). Two doors into the same building. This one is for the business side.
 
 ## What's inside
 
@@ -20,7 +20,7 @@ This is the consultant-facing counterpart to the [Frontier Consultancy](https://
 
 Built for partner consultants who don't write code for a living but spend their days shaping deals, building decks, briefing customers, and writing follow-ups. If you can install software and copy-paste commands, you can complete the course.
 
-If you build the solutions (architects, engineers, devs), the [Frontier Consultancy](https://github.com/JW-Sthlm/frontier-consultancy) materials cover the technical track instead.
+If you build the solutions (architects, engineers, devs), the [Frontier Consultancy](https://aka.ms/frontierconsultancy) materials cover the technical track instead.
 
 ## How this is different from GitHub's official course
 

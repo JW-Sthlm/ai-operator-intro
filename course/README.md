@@ -8,7 +8,7 @@ The participant experience lives at **[the course landing page](index.html)**. T
 
 The business side of partner consulting. People whose day is decks, briefings, partner emails, customer follow-ups, status updates, RFP work. Not coding.
 
-If you build the solutions (architects, engineers, developers), see the [Frontier Consultancy](https://github.com/JW-Sthlm/frontier-consultancy) materials. That's the technical AI-first track. This is the commercial one.
+If you build the solutions (architects, engineers, developers), see the [Frontier Consultancy](https://aka.ms/frontierconsultancy) materials. That's the technical AI-first track. This is the commercial one.
 
 ## Lessons
 

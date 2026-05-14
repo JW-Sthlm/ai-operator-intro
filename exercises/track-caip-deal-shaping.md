@@ -4,7 +4,7 @@
 > **Format:** Self-paced, opinionated
 > **Goal:** Use Copilot CLI to pressure-test and shape a CAIP (Cloud and AI Platform) opportunity end-to-end
 
-This exercise pairs with the [Frontier Consultancy](https://github.com/JW-Sthlm/frontier-consultancy) CAIP track. That track covers the technical delivery side. This one covers the commercial side. You can run both, or just this one if your role is account management, sales, or business development.
+This exercise pairs with the [Frontier Consultancy](https://aka.ms/frontierconsultancy) CAIP track. That track covers the technical delivery side. This one covers the commercial side. You can run both, or just this one if your role is account management, sales, or business development.
 
 ## What's a CAIP opportunity?
 
@@ -118,6 +118,6 @@ That third question is the door to building this as a skill (see [Exercise 3](ex
 
 ## What's next
 
-- Pair this with the [Frontier Consultancy CAIP track](https://github.com/JW-Sthlm/frontier-consultancy) when the technical proof point starts shaping up.
+- Pair this with the [Frontier Consultancy CAIP track](https://aka.ms/frontierconsultancy) when the technical proof point starts shaping up.
 - Try the same flow on an AIBS opportunity (data, agents, Copilot Studio) or a Security opportunity (Defender, Sentinel, Entra).
 - Build a `caip-deal-review` skill so this workflow runs on every opportunity, not just the ones you remember.

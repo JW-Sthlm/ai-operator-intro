@@ -8,7 +8,7 @@
 
 ## Track-flavored exercises
 
-If your work touches the [Frontier Consultancy](https://github.com/JW-Sthlm/frontier-consultancy) tracks, the track-specific exercise pushes deeper on the commercial side:
+If your work touches the [Frontier Consultancy](https://aka.ms/frontierconsultancy) tracks, the track-specific exercise pushes deeper on the commercial side:
 
 - **[Deal-shaping for a Cloud and AI Platform opportunity](../exercises/track-caip-deal-shaping.md)**. Pressure-test a CAIP deal end-to-end.
 
@@ -74,7 +74,7 @@ More on plans: [github.com/features/copilot/plans](https://github.com/features/c
 
 ## Companion: Frontier Consultancy
 
-If you build the solutions (architects, engineers, developers), the [Frontier Consultancy](https://github.com/JW-Sthlm/frontier-consultancy) materials cover the technical AI-first delivery tracks (CAIP, AIBS, Security). This course is the commercial counterpart.
+If you build the solutions (architects, engineers, developers), the [Frontier Consultancy](https://aka.ms/frontierconsultancy) materials cover the technical AI-first delivery tracks (CAIP, AIBS, Security). This course is the commercial counterpart.
 
 ## License and attribution
 
