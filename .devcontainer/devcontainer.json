@@ -1,7 +1,7 @@
 {
   "name": "AI Operator Intro",
   "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
-  "postCreateCommand": "npm install -g @github/copilot",
+  "onCreateCommand": "npm install -g @github/copilot",
   "customizations": {
     "vscode": {
       "extensions": [
