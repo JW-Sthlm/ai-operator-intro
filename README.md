@@ -1,5 +1,19 @@
 # The AI Operator Intro
 
+> ## ✅ You're in. It worked.
+>
+> If you're reading this inside a Codespace, your environment is ready. Node, the GitHub CLI, and Copilot CLI are all installed. There is nothing else to set up.
+>
+> **Three steps to start:**
+>
+> 1. Click into the **terminal** at the bottom of the screen.
+> 2. Run `copilot --allow-all`. It shows a device code. Open the link, paste the code, and sign in with a **personal** GitHub account.
+> 3. At the `>` prompt, type something real. For example: *Help me draft a one-paragraph intro email to a new partner contact, casual tone.*
+>
+> When you want the guided path, the four lessons live in the `course/` folder, and the first hands-on build is `exercises/exercise-01-build-your-briefing.html`. You can also read them on the [live site](https://jw-sthlm.github.io/ai-operator-intro/).
+>
+> Everything below is reference. You don't need it to start.
+
 A public, self-paced **Copilot CLI intro for partner consultants in business-oriented roles.** Account managers, sellers, delivery managers, marketing, business development, engagement managers. Anyone whose day runs on decks, briefings, customer emails, RFPs, and follow-ups.
 
 **Live site:** **[jw-sthlm.github.io/ai-operator-intro](https://jw-sthlm.github.io/ai-operator-intro/)**
