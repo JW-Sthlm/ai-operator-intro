@@ -33,6 +33,7 @@
   .card .card-tag.amber{color:var(--amber);background:rgba(210,153,34,.1);border:1px solid rgba(210,153,34,.25);}
   .card .card-tag.purple{color:var(--purple);background:rgba(137,87,229,.1);border:1px solid rgba(137,87,229,.25);}
   .card .card-tag.pink{color:var(--pink);background:rgba(247,120,186,.1);border:1px solid rgba(247,120,186,.25);}
+  .card .card-tag.teal{color:var(--teal);background:rgba(57,210,192,.1);border:1px solid rgba(57,210,192,.25);}
   .meta{font-size:13px;color:var(--muted);border-top:1px solid var(--border);padding-top:20px;margin-top:36px;}
   .meta strong{color:var(--text);}
   a.inline{color:var(--purple);text-decoration:none;}
@@ -70,6 +71,19 @@
 
   /* Footer disclaimer */
   .disclaimer{font-size:12px;color:var(--muted);background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:14px 18px;margin-top:24px;line-height:1.5;}
+
+  /* Contact card */
+  .contact-card{display:flex;flex-direction:column;align-items:flex-start;max-width:320px;background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:24px 22px 22px;}
+  .contact-avatar{width:80px;height:80px;border-radius:50%;overflow:hidden;margin-bottom:14px;background:var(--bg);display:flex;align-items:center;justify-content:center;}
+  .contact-avatar img{width:100%;height:100%;object-fit:cover;}
+  .contact-name{font-size:20px;font-weight:800;letter-spacing:-.01em;margin-bottom:2px;color:var(--text);}
+  .contact-role{font-size:13px;color:var(--muted);line-height:1.4;margin-bottom:18px;}
+  .contact-links{margin-top:8px;display:flex;flex-direction:column;gap:8px;width:100%;}
+  .contact-mail{font-size:14px;color:var(--text);text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:6px;word-break:break-all;}
+  .contact-mail:hover{border-color:var(--purple);}
+  .contact-linkedin{font-size:13px;color:var(--muted);text-decoration:none;letter-spacing:.02em;display:inline-flex;align-items:center;gap:7px;border-bottom:1px solid var(--border);padding-bottom:6px;}
+  .contact-linkedin:hover{color:var(--text);border-color:var(--purple);}
+  .contact-linkedin svg{width:14px;height:14px;flex-shrink:0;fill:currentColor;}
 
   /* Fake terminal hero */
   .fake-term{display:block;width:100%;max-width:720px;margin:8px auto 32px;border-radius:14px;border:1px solid var(--border);box-shadow:0 12px 40px rgba(0,0,0,.45);background:#0d1117;overflow:hidden;font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;}
@@ -144,6 +158,16 @@
     </div>
   </details>
 
+  <div class="section-label">The talk</div>
+  <div class="cards">
+    <a class="card" href="talk/">
+      <span class="icon">🎞️</span>
+      <h2>The slide deck</h2>
+      <p>The full session, self-contained in your browser. Open it, press P for the presenter view with speaker notes.</p>
+      <span class="card-tag teal">slides</span>
+    </a>
+  </div>
+
   <div class="section-label">Start here</div>
   <div class="cards">
     <a class="card" href="setup.html">
@@ -216,8 +240,18 @@
     <div class="bridge-cta">Open Frontier Consultancy<span class="arrow">→</span></div>
   </a>
 
+  <div class="section-label">Contact</div>
+  <div class="contact-card">
+    <div class="contact-avatar"><img src="photos/johan.jpg" alt="Johan Wallquist"></div>
+    <div class="contact-name">Johan Wallquist</div>
+    <div class="contact-role">Partner Solution Architect</div>
+    <div class="contact-links">
+      <a class="contact-mail" href="mailto:jwallquist@microsoft.com">jwallquist@microsoft.com</a>
+      <a class="contact-linkedin" href="https://www.linkedin.com/in/johanwallquist/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.86-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.4v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 11-.01-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .78 0 1.74v20.52C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.74V1.74C24 .78 23.2 0 22.22 0z"/></svg>LinkedIn</a>
+    </div>
+  </div>
+
   <div class="meta">
-    <p><strong>Maintained by:</strong> Johan Wallquist · <a class="inline" href="https://www.linkedin.com/in/johanwallquist/" target="_blank">LinkedIn</a></p>
     <p><strong>Source:</strong> <a class="inline" href="https://github.com/JW-Sthlm/ai-operator-intro" target="_blank">github.com/JW-Sthlm/ai-operator-intro</a></p>
   </div>
 
